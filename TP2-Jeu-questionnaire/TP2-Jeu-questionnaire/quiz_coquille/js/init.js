@@ -1,7 +1,7 @@
 /**
  * @module init.js
- * @author Coéquipier1
- * @author Coéquipier2
+ * @author Sylvie Allain 
+ * @author Thierry Légaré
  * @copyright 2018
  */
 
@@ -10,7 +10,7 @@
   * @type {number}
   * @description Nombre de questions à afficher dans le quiz.
   */
-const MAX_QUESTIONS = 3;
+const MAX_QUESTIONS = 5;
 
 /**
   * @const NB_CHOIX_MAX
@@ -83,7 +83,7 @@ function choisirQuestions()
  */
 function init() 
 {
-	
+	choisirQuestions();
 }
 
 window.onload = init;

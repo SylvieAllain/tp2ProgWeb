@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+
+@font-face {
+	font-family: Palatino;
+	src: url(Palatino.ttc);
+}
+
+body {
+	background-size: cover;
+	font-family:'Palatino';
+	background: linear-gradient(to top, #d7d7d7 -15%, #f2f2f2 100%);
+	background-size: cover;
+	background-repeat: no-repeat;
+	font-size: 1em;
+}
+
+nav {
+	background-color:rgb(230, 230, 230);
+}
+
+.veriteLiens {
+	position: relative;
+	display: inline-block;
+}
+
+.textVerite {
+	visibility: hidden;
+	width: 160px;
+	background-color: rgba(0,0,0,0.35);
+	color: white;
+	border-radius: 0.2em;
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 1;
+}
+
+.veriteLiens:hover .textVerite {
+	visibility: visible;
+}
+
+#navTitle {
+	font-size: 2.5em;
+	font-family: 'Lobster', cursive;
+	color: rgb(89, 179, 0);
+	text-shadow: -.05em -.05em .05em white , .03em .03em .05em black;
+}
+
+.nav-link:after{
+	content: "|";
+	margin-left: 1em;
+	color: inherit;
+}
+
+.fbButton{
+	margin-left: auto;
+	position: relative;
+	padding-top: 0.5em;
+}
+
+.row-left{
+	border-bottom-style: solid;
+	border-right-style: solid;
+	border-color: rgb(146, 149, 145);
+	border-radius: 0.25em;
+	box-shadow: 5px 5px rgba(146, 149, 145,0.25);
+	margin: 2em;
+	padding: 2em;
+	background: radial-gradient(ellipse at center, #FFF 15%, #DDD 90%);
+}
+
+.row-right{
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-color: rgb(146, 149, 145);
+	border-radius: 0.25em;
+	box-shadow: -5px 5px rgba(146, 149, 145,0.25);
+	margin: 2em;
+	padding: 2em;
+	background: radial-gradient(ellipse at center, #FFF 15%, #DDD 90%);
+}
+
+.etudes-article a:visited {
+	color: black;
+}
+
+.etudes-article a {
+	color: black;
+	font-size: 0.9em;
+}
+
+.row-right img{
+	box-shadow: 5px 5px #DDD;
+}
+
+.row-left img{
+	box-shadow: -5px 5px #DDD;
+}
+
+footer {
+	background-color: #3e3b38;
+	height: 17em;
+	color: #D0D0D0;
+	text-align: center;
+	background-size: cover;
+}
+
+footer a {
+	color: #D0D0D0;
+	text-align: center;
+}
+
+footer a:hover {
+	color: #D0D0D0;
+	text-decoration: none;
+}
+
+.frameFB{
+/*	display: inline;*/
+	position: absolute;
+}
+
+.fbImg {
+	position: relative;
+	display: inline-flex;
+/*	height:180px;*/
+}
+
+.fbPlugin {
+	display: inline-block;
+	visibility: hidden;
+	color: #c8cac8;
+	background-color: #3e3b38;
+	border-radius: 0.2em;
+	position: absolute;
+	z-index: 1;
+}
+
+.fbImg:hover .fbPlugin {
+	visibility: visible;
+}
+
+
+.nameTime {
+	visibility: hidden;
+	color: #D0D0D0;
+	background-color: #3e3b38;
+	border-radius: 0.2em;
+/*	position: relative;*/
+}
+
+.copyrightText:hover +.nameTime {
+	visibility: visible;
+}
+
+.logo-facebook {
+	width: 5em;
+	height: 5em;
+}
+
+
+.text_intro{
+	border-style: hidden solid solid hidden;
+	border-color: silver;
+	border-radius: 2em;
+	box-shadow : 1em 1em 2em white;
+	font-family: Arial;
+	font-style: normal;
+	background: radial-gradient(ellipse at center, #FFF 45%, #D7D7D7 85%);
+}
+
+#titre_intro{
+	font-family:Lobster;
+	font-style: normal;
+}
+
+#sous_titre_intro{
+	font-family:Lobster;
+	margin-bottom: 2em;
+}
+
+#phrase_de_fin {
+	text-decoration: underline;
+}
+
+.carriereIntro {
+	font-size: 1.3em;
+}
+
+.verticalLine{
+	border-right: 1px solid black;
+}
+
+.contactInfo{
+	font-size: 1.3em;
+}
