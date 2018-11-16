@@ -1,7 +1,7 @@
 /**
  * @module quiz.js
- * @author Coéquipier1
- * @author Coéquipier2
+ * @author Sylvie Allain
+ * @author Thierry Légaré
  * @copyright 2018
  */
 
@@ -23,7 +23,7 @@ function validerQuestion(noQuestion, choixUtilisateur)
  */
 function ajouterPoint()
 {
-	//ajouter votre code ici
+	return 1;
 }
 
 /**
@@ -135,7 +135,7 @@ function majTexteQuestion(noQuestion)
  * @description Modifie l'interface en affichant une le numéro de la question courante.
  */
 function majNoQuestionCourant()
-{	
+{
 	//ajouter votre code ici
 }
 
