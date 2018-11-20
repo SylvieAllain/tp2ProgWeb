@@ -77,8 +77,13 @@ function obtenirBonneReponse(noQuestion)
  */
 function obtenirChoix(noQuestion)
 {
-	var choix = ["a) Chou kale","b) Légumineuse","c) Noix et graines","d) Tofu, seitan et tempeh"];
-	return choix;
+	var question = tableauQuestions[noQuestion];
+	var tableauChoix = [];
+	for (i = 3; i < question.length; i++)
+	{
+		tableauChoix.push(question[i]);
+	}
+	return tableauChoix;
 }
 
 /**

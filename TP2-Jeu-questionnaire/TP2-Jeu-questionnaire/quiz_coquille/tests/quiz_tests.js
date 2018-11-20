@@ -169,7 +169,7 @@ QUnit.test ("WHEN_theUserReceiveQuestion10_THEN_obtenirBonneReponse_returnsGoodA
   function (assert){
   //Arrange
   var noQuestion = 9;
-  var tableauReponse = ["c) Non, naturellement ces aliments ne contiennent pas de vitamines B12 et de vitamine D, mais s’ils sont enrichis ils comblent nos besoins nutritionnels."];
+  var tableauReponse = "c) Non, naturellement ces aliments ne contiennent pas de vitamines B12 et de vitamine D, mais s’ils sont enrichis ils comblent nos besoins nutritionnels.";
   //Act
   var bonneReponse = obtenirBonneReponse(noQuestion);
   //Assert
