@@ -27,19 +27,17 @@
    }
  );*/
 
- QUnit.test ("WHEN_theUserReceiveQuestion1_THEN_obtenirChoix_returnsEachChoices",
-   function (assert){
+ QUnit.test("WHEN_theUserReceiveQuestion1_THEN_obtenirChoix_returnsEachChoices", function(assert){
    //Arrange
-   var noQuestion = 0;
-   var choix = ["a) L’arrêt de la consommation de viandes.","b) La diminution de la consommation de viandes.","c) La diminution de la consommation de produits d’origine animale.","d) L’arrêt de la consommation de produits d’origine animale."];
+   var noQuestion=0;
+   var choix=["a) L’arrêt de la consommation de viandes.","b) La diminution de la consommation de viandes.","c) La diminution de la consommation de produits d’origine animale.","d) L’arrêt de la consommation de produits d’origine animale."];
 
    //Act
-   var choixReponse = obtenirChoix(noQuestion);
+   var choixReponse=obtenirChoix(noQuestion);
    //Assert
 
-   assert.deepEqual (choixReponse, choix, "Passed!");
-   }
- );
+   assert.deepEqual(choixReponse, choix, "Passed!");
+   });
 
 QUnit.test ("WHEN_theUserReceiveQuestion2_THEN_obtenirChoix_returnsEachChoices",
   function (assert){
@@ -59,7 +57,7 @@ QUnit.test ("WHEN_theUserReceiveQuestion3_THEN_obtenirChoix_returnsEachChoices",
   function (assert){
   //Arrange
   var noQuestion = 2;
-  var choix = ["a) Le bœuf produit 55g comparativement à 14g pour les lentilles.","b) Le bœuf produit 72g comparativement à 40g pour les lentilles.","c) Le bœuf produit 330g comparativement à 2g pour les lentilles.","d) Les lentilles produisent 330g comparativement à 2g pour le bœuf."]];
+  var choix = ["a) Le bœuf produit 55g comparativement à 14g pour les lentilles.","b) Le bœuf produit 72g comparativement à 40g pour les lentilles.","c) Le bœuf produit 330g comparativement à 2g pour les lentilles.","d) Les lentilles produisent 330g comparativement à 2g pour le bœuf."];
 
   //Act
   var choixReponse = obtenirChoix(noQuestion);
@@ -115,7 +113,7 @@ QUnit.test ("WHEN_theUserReceiveQuestion7_THEN_obtenirChoix_returnsEachChoices",
   function (assert){
   //Arrange
   var noQuestion = 6;
-  var choix = ["a) Apport important de vitamines et de minéraux essentiels.","b) Alimentation faible en gras saturés et en cholestérol.","c) Diminution de développer des maladies chroniques, tel que le diabète, certains cancers et des maladies cardiovasculaires.","d) Toutes ses réponses"],;
+  var choix = ["a) Apport important de vitamines et de minéraux essentiels.","b) Alimentation faible en gras saturés et en cholestérol.","c) Diminution de développer des maladies chroniques, tel que le diabète, certains cancers et des maladies cardiovasculaires.","d) Toutes ses réponses"];
 
   //Act
   var choixReponse = obtenirChoix(noQuestion);
@@ -149,7 +147,7 @@ QUnit.test ("WHEN_theUserReceiveQuestion9_THEN_obtenirChoix_returnsEachChoices",
   var choixReponse = obtenirChoix(noQuestion);
   //Assert
 
-  assert.deepEqual (choixReponse, choix, "Passed!");
+  assert.deepEqual (choixReponse, choix);
   }
 );
 
@@ -163,6 +161,18 @@ QUnit.test ("WHEN_theUserReceiveQuestion10_THEN_obtenirChoix_returnsEachChoices"
   var choixReponse = obtenirChoix(noQuestion);
   //Assert
 
-  assert.deepEqual (choixReponse, choix, "Passed!");
+  assert.deepEqual (choixReponse, choix);
+  }
+);
+
+QUnit.test ("WHEN_theUserReceiveQuestion10_THEN_obtenirBonneReponse_returnsGoodAnswer",
+  function (assert){
+  //Arrange
+  var noQuestion = 9;
+  var tableauReponse = ["c) Non, naturellement ces aliments ne contiennent pas de vitamines B12 et de vitamine D, mais s’ils sont enrichis ils comblent nos besoins nutritionnels."];
+  //Act
+  var bonneReponse = obtenirBonneReponse(noQuestion);
+  //Assert
+  assert.deepEqual (bonneReponse, tableauReponse);
   }
 );

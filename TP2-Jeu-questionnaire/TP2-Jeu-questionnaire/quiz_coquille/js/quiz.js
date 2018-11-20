@@ -64,7 +64,9 @@ function chargerQuestionSuivante()
  */
 function obtenirBonneReponse(noQuestion)
 {
-	//ajouter votre code ici
+	var choixDeReponses = obtenirChoix(noQuestion);
+  var bonneReponse = choixDeReponses[tableauQuestions[noQuestion][POS_REPONSE]];
+	return bonneReponse;
 }
 
 /**
@@ -75,7 +77,7 @@ function obtenirBonneReponse(noQuestion)
  */
 function obtenirChoix(noQuestion)
 {
-	var choix = ["pouet,pouet,pouet,pouet"];
+	var choix = ["a) Chou kale","b) Légumineuse","c) Noix et graines","d) Tofu, seitan et tempeh"];
 	return choix;
 }
 

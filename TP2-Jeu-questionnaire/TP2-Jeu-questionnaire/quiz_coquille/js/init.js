@@ -83,15 +83,15 @@ var questionsQuiz = [[]];
  * @name choisirQuestions
  * @description Prend MAX_QUESTIONS de questions de tableauQuestions pour les mettre dans questionsQuiz.
  */
-function choisirQuestions()
-{
-  for {
-      random
-      if !(exist deja){
-        question.innerHTML = tableauQuestions[questionsQuiz[0]][0]
-      }
-  }
-}
+// function choisirQuestions()
+// {
+//   for {
+//       random
+//       if !(exist deja){
+//         question.innerHTML = tableauQuestions[questionsQuiz[0]][0]
+//       }
+//   }
+// }
 
 /**
  * @name init
@@ -100,7 +100,7 @@ function choisirQuestions()
 function init()
 {
 //  document.getElementById("btnChoix1").innerHTML = tableauQuestions[0][4];
-	choisirQuestions();
+	// choisirQuestions();
 }
 
 window.onload = init;
