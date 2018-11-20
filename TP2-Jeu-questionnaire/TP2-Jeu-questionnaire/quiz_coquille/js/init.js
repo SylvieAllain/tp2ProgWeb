@@ -58,16 +58,16 @@ var reponseUtilisateur = 0;
   * @example [["Quel est le meilleur aliment pour votre santé?", 1, "https://www.google.ca" ,"Brocoli","Croustilles sans OGM","Crème glacée","Poutine déjeuner"]]
   */
 var tableauQuestions = [
-  ["1. Qu’est-ce que le végétalisme? Un régime qui encourage :",3,"http://www.extenso.org/article/a-chacun-son-type-de-vegetarisme/","a) L’arrêt de la consommation de viandes.","b) La diminution de la consommation de viandes.","c) La diminution de la consommation de produits d’origine animale.","d) L’arrêt de la consommation de produits d’origine animale."],
-  ["2. Quel est le pourcentage de la production mondiale de gaz à effet de serre est produit par l’industrie laitière?",1,"http://observatoireprevention.org/2017/07/11/manger-de-viande-preserver-planete/","25%","18%","12%","5%"],
-  ["3. Quelle est le poids CO2 de production bœuf comparativement à la production de lentilles.",2,"https://www.youtube.com/watch?v=nUnJQWO4YJY#action=share","a) Le bœuf produit 55g comparativement à 14g pour les lentilles.","b) Le bœuf produit 72g comparativement à 40g pour les lentilles.","c) Le bœuf produit 330g comparativement à 2g pour les lentilles.","d) Les lentilles produisent 330g comparativement à 2g pour le bœuf."],
-  ["4. Comment ce nomme le type de végétarisme dont la consommation de produits d’origine animale est considérablement diminuée, sans être totalement éliminés?","3","http://www.extenso.org/article/a-chacun-son-type-de-vegetarisme/","a) Le végétarisme","b) Le crudivorisme","c) Le végétalisme","d) le flexitarisme"],
-  ["5. Quelle est le pourcentage de la déforestation produit par l’agriculture?",1,"https://www.youtube.com/watch?v=nVydgG2DFU0#action=share","55%","70%","68%","32%"],
-  ["6. Quelle est l’impact de l’agriculture, autre que la production de gaz à effet de serre, sur l’environnement?",3,"http://www.extenso.org/article/l-impact-de-l-elevage-sur-l-environnement/","a) Pollution des eaux","b) Dégradation des terres, incluant la déforestation","c) Perte de biodiversité","d) Toutes ses réponses"],
-  ["7. Quelles sont les bienfaits d’une alimentation riche en produit d’origine végétale?",3,"https://www.usherbrooke.ca/reussir-en-sante/fileadmin/sites/reussir-en-sante/documents/Habitudes_de_vie/Nutrition/Manger_vege__2013_.pdf","a) Apport important de vitamines et de minéraux essentiels.","b) Alimentation faible en gras saturés et en cholestérol.","c) Diminution de développer des maladies chroniques, tel que le diabète, certains cancers et des maladies cardiovasculaires.","d) Toutes ses réponses"],
-  ["8. Quels sont les risques qui sont associés à la consommation excessive de viande?",3,"https://www.usherbrooke.ca/reussir-en-sante/fileadmin/sites/reussir-en-sante/documents/Habitudes_de_vie/Nutrition/Manger_vege__2013_.pdf","a) Développer des maladies cardio-vasculaires","b) Développer certains cancers","c) Développer un diabète de type 2","d) Toutes ses réponses"],
-  ["9. Quel type d’aliment ne fait pas parti des substituts de la viande parmi ces choix?",0,"https://www.usherbrooke.ca/reussir-en-sante/fileadmin/sites/reussir-en-sante/documents/Habitudes_de_vie/Nutrition/Manger_vege__2013_.pdf","a) Chou kale","b) Légumineuse","c) Noix et graines","d) Tofu, seitan et tempeh"],
-  ["10. Est-ce que les aliments végétaliens contiennent tous les nutriments essentiels?",2,"https://www.usherbrooke.ca/reussir-en-sante/fileadmin/sites/reussir-en-sante/documents/Habitudes_de_vie/Nutrition/Manger_vege__2013_.pdf","a) Non, il manquera nécessairement de la vitamine D, de la vitamine B12 et de fer. ","b) Oui, même la plupart des aliments en contiennent plus de ces nutriments en proportion que les aliments d’origine animale.","c) Non, naturellement ces aliments ne contiennent pas de vitamines B12 et de vitamine D, mais s’ils sont enrichis ils comblent nos besoins nutritionnels.","d) Oui, les aliments tous les nutriments essentiels"]
+  ["Qu’est-ce que le végétalisme? Un régime qui encourage :",3,"http://www.extenso.org/article/a-chacun-son-type-de-vegetarisme/","a) L’arrêt de la consommation de viandes.","b) La diminution de la consommation de viandes.","c) La diminution de la consommation de produits d’origine animale.","d) L’arrêt de la consommation de produits d’origine animale."],
+  ["Quel est le pourcentage de la production mondiale de gaz à effet de serre est produit par l’industrie laitière?",1,"http://observatoireprevention.org/2017/07/11/manger-de-viande-preserver-planete/","25%","18%","12%","5%"],
+  ["Quelle est le poids CO2 de production bœuf comparativement à la production de lentilles.",2,"https://www.youtube.com/watch?v=nUnJQWO4YJY#action=share","a) Le bœuf produit 55g comparativement à 14g pour les lentilles.","b) Le bœuf produit 72g comparativement à 40g pour les lentilles.","c) Le bœuf produit 330g comparativement à 2g pour les lentilles.","d) Les lentilles produisent 330g comparativement à 2g pour le bœuf."],
+  ["Comment ce nomme le type de végétarisme dont la consommation de produits d’origine animale est considérablement diminuée, sans être totalement éliminés?","3","http://www.extenso.org/article/a-chacun-son-type-de-vegetarisme/","a) Le végétarisme","b) Le crudivorisme","c) Le végétalisme","d) le flexitarisme"],
+  ["Quelle est le pourcentage de la déforestation produit par l’agriculture?",1,"https://www.youtube.com/watch?v=nVydgG2DFU0#action=share","55%","70%","68%","32%"],
+  ["Quelle est l’impact de l’agriculture, autre que la production de gaz à effet de serre, sur l’environnement?",3,"http://www.extenso.org/article/l-impact-de-l-elevage-sur-l-environnement/","a) Pollution des eaux","b) Dégradation des terres, incluant la déforestation","c) Perte de biodiversité","d) Toutes ses réponses"],
+  ["Quelles sont les bienfaits d’une alimentation riche en produit d’origine végétale?",3,"https://www.usherbrooke.ca/reussir-en-sante/fileadmin/sites/reussir-en-sante/documents/Habitudes_de_vie/Nutrition/Manger_vege__2013_.pdf","a) Apport important de vitamines et de minéraux essentiels.","b) Alimentation faible en gras saturés et en cholestérol.","c) Diminution de développer des maladies chroniques, tel que le diabète, certains cancers et des maladies cardiovasculaires.","d) Toutes ses réponses"],
+  ["Quels sont les risques qui sont associés à la consommation excessive de viande?",3,"https://www.usherbrooke.ca/reussir-en-sante/fileadmin/sites/reussir-en-sante/documents/Habitudes_de_vie/Nutrition/Manger_vege__2013_.pdf","a) Développer des maladies cardio-vasculaires","b) Développer certains cancers","c) Développer un diabète de type 2","d) Toutes ses réponses"],
+  ["Quel type d’aliment ne fait pas parti des substituts de la viande parmi ces choix?",0,"https://www.usherbrooke.ca/reussir-en-sante/fileadmin/sites/reussir-en-sante/documents/Habitudes_de_vie/Nutrition/Manger_vege__2013_.pdf","a) Chou kale","b) Légumineuse","c) Noix et graines","d) Tofu, seitan et tempeh"],
+  ["Est-ce que les aliments végétaliens contiennent tous les nutriments essentiels?",2,"https://www.usherbrooke.ca/reussir-en-sante/fileadmin/sites/reussir-en-sante/documents/Habitudes_de_vie/Nutrition/Manger_vege__2013_.pdf","a) Non, il manquera nécessairement de la vitamine D, de la vitamine B12 et de fer. ","b) Oui, même la plupart des aliments en contiennent plus de ces nutriments en proportion que les aliments d’origine animale.","c) Non, naturellement ces aliments ne contiennent pas de vitamines B12 et de vitamine D, mais s’ils sont enrichis ils comblent nos besoins nutritionnels.","d) Oui, les aliments tous les nutriments essentiels"]
 ];
 
 /**
@@ -85,7 +85,12 @@ var questionsQuiz = [[]];
  */
 function choisirQuestions()
 {
-
+  for {
+      random
+      if !(exist deja){
+        question.innerHTML = tableauQuestions[questionsQuiz[0]][0]
+      }
+  }
 }
 
 /**
