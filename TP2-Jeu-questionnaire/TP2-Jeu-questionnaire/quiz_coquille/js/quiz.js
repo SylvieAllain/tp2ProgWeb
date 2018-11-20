@@ -75,7 +75,8 @@ function obtenirBonneReponse(noQuestion)
  */
 function obtenirChoix(noQuestion)
 {
-	//ajouter votre code ici
+	var choix = ["pouet,pouet,pouet,pouet"];
+	return choix;
 }
 
 /**

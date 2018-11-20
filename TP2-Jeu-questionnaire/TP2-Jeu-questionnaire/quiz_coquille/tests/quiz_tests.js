@@ -27,201 +27,142 @@
    }
  );*/
 
-  QUnit.test ("WHEN_theUserReceiveQuestion1_THEN_obtenirChoix_returnsEachChoice"
-    function (assert){
-    //Arrange
-    var noQuestion = 0;
-    questionQuiz = [["Q1", 3, "URL", "Q1-C1","Q1-C2","Q1-C3","Q1-C4"]];
-    //Act
-    var choixReponse = obtenirChoix (noQuestion);
-    for (i = 0; i < choixReponse.length; i++)
-    {
-      if (questionQuiz[i + 3] != choixReponse[i])
-      {
-        estEgal = false;
-      }
-    }
-    //Assert
-    assert.equal (obtenirChoix, true);
-  }
-);
+ QUnit.test ("WHEN_theUserReceiveQuestion1_THEN_obtenirChoix_returnsEachChoices",
+   function (assert){
+   //Arrange
+   var noQuestion = 0;
+   var choix = ["a) L’arrêt de la consommation de viandes.","b) La diminution de la consommation de viandes.","c) La diminution de la consommation de produits d’origine animale.","d) L’arrêt de la consommation de produits d’origine animale."];
 
-QUnit.test ("WHEN_theUserReceiveQuestion2_THEN_obtenirChoix_returnsEachChoice"
+   //Act
+   var choixReponse = obtenirChoix(noQuestion);
+   //Assert
+
+   assert.deepEqual (choixReponse, choix, "Passed!");
+   }
+ );
+
+QUnit.test ("WHEN_theUserReceiveQuestion2_THEN_obtenirChoix_returnsEachChoices",
   function (assert){
   //Arrange
   var noQuestion = 1;
-  questionQuiz = [["Q2", 3, "URL", "Q2-C1","Q2-C2","Q2-C3","Q2-C4"]];
-  //Act
-  var choixReponse = obtenirChoix (noQuestion);
-  for (i = 0; i < choixReponse.length; i++)
-  {
-    if (questionQuiz[i + 3] != choixReponse[i])
-    {
-      estEgal = false;
-    }
-  }
-  //Assert
-  assert.equal (obtenirChoix, true);
-  }
+  var choix = ["a) 25%","b) 18%","c) 12%","d) 5%"];
 
+  //Act
+  var choixReponse = obtenirChoix(noQuestion);
+  //Assert
+
+  assert.deepEqual (choixReponse, choix, "Passed!");
+  }
 );
 
-QUnit.test ("WHEN_theUserReceiveQuestion3_THEN_obtenirChoix_returnsEachChoice"
+QUnit.test ("WHEN_theUserReceiveQuestion3_THEN_obtenirChoix_returnsEachChoices",
   function (assert){
   //Arrange
   var noQuestion = 2;
-  questionQuiz = [["Q3", 3, "URL", "Q3-C1","Q3-C2","Q3-C3","Q3-C4"]];
-  //Act
-  var choixReponse = obtenirChoix (noQuestion);
-  for (i = 0; i < choixReponse.length; i++)
-  {
-    if (questionQuiz[i + 3] != choixReponse[i])
-    {
-      estEgal = false;
-    }
-  }
-  //Assert
-  assert.equal (obtenirChoix, true);
-  }
+  var choix = ["a) Le bœuf produit 55g comparativement à 14g pour les lentilles.","b) Le bœuf produit 72g comparativement à 40g pour les lentilles.","c) Le bœuf produit 330g comparativement à 2g pour les lentilles.","d) Les lentilles produisent 330g comparativement à 2g pour le bœuf."]];
 
+  //Act
+  var choixReponse = obtenirChoix(noQuestion);
+  //Assert
+
+  assert.deepEqual (choixReponse, choix, "Passed!");
+  }
 );
 
-QUnit.test ("WHEN_theUserReceiveQuestion4_THEN_obtenirChoix_returnsEachChoice"
+QUnit.test ("WHEN_theUserReceiveQuestion4_THEN_obtenirChoix_returnsEachChoices",
   function (assert){
   //Arrange
   var noQuestion = 3;
-  questionQuiz = [["Q4", 3, "URL", "Q4-C1","Q4-C2","Q4-C3","Q4-C4"]];
-  //Act
-  var choixReponse = obtenirChoix (noQuestion);
-  for (i = 0; i < choixReponse.length; i++)
-  {
-    if (questionQuiz[i + 3] != choixReponse[i])
-    {
-      estEgal = false;
-    }
-  }
-  //Assert
-  assert.equal (obtenirChoix, true);
-  }
+  var choix = ["a) Le végétarisme","b) Le crudivorisme","c) Le végétalisme","d) le flexitarisme"];
 
+  //Act
+  var choixReponse = obtenirChoix(noQuestion);
+  //Assert
+
+  assert.deepEqual (choixReponse, choix, "Passed!");
+  }
 );
 
-QUnit.test ("WHEN_theUserReceiveQuestion5_THEN_obtenirChoix_returnsEachChoice"
+QUnit.test ("WHEN_theUserReceiveQuestion5_THEN_obtenirChoix_returnsEachChoices",
   function (assert){
   //Arrange
   var noQuestion = 4;
-  questionQuiz = [["Q5", 3, "URL", "Q5-C1","Q5-C2","Q5-C3","Q5-C4"]];
-  //Act
-  var choixReponse = obtenirChoix (noQuestion);
-  for (i = 0; i < choixReponse.length; i++)
-  {
-    if (questionQuiz[i + 3] != choixReponse[i])
-    {
-      estEgal = false;
-    }
-  }
-  //Assert
-  assert.equal (obtenirChoix, true);
-}
+  var choix = ["a) 55%","b) 70%","c) 68%","d) 32%"];
 
+  //Act
+  var choixReponse = obtenirChoix(noQuestion);
+  //Assert
+
+  assert.deepEqual (choixReponse, choix, "Passed!");
+  }
 );
 
-QUnit.test ("WHEN_theUserReceiveQuestion6_THEN_obtenirChoix_returnsEachChoice"
+QUnit.test ("WHEN_theUserReceiveQuestion6_THEN_obtenirChoix_returnsEachChoices",
   function (assert){
   //Arrange
   var noQuestion = 5;
-  questionQuiz = [["Q6", 3, "URL", "Q6-C1","Q6-C2","Q6-C3","Q6-C4"]];
-  //Act
-  var choixReponse = obtenirChoix (noQuestion);
-  for (i = 0; i < choixReponse.length; i++)
-  {
-    if (questionQuiz[i + 3] != choixReponse[i])
-    {
-      estEgal = false;
-    }
-  }
-  //Assert
-  assert.equal (obtenirChoix, true);
-}
+  var choix = ["a) Pollution des eaux","b) Dégradation des terres, incluant la déforestation","c) Perte de biodiversité","d) Toutes ses réponses"];
 
+  //Act
+  var choixReponse = obtenirChoix(noQuestion);
+  //Assert
+
+  assert.deepEqual (choixReponse, choix, "Passed!");
+  }
 );
 
-QUnit.test ("WHEN_theUserReceiveQuestion7_THEN_obtenirChoix_returnsEachChoice"
+QUnit.test ("WHEN_theUserReceiveQuestion7_THEN_obtenirChoix_returnsEachChoices",
   function (assert){
   //Arrange
   var noQuestion = 6;
-  questionQuiz = [["Q7", 3, "URL", "Q7-C1","Q7-C2","Q7-C3","Q7-C4"]];
-  //Act
-  var choixReponse = obtenirChoix (noQuestion);
-  for (i = 0; i < choixReponse.length; i++)
-  {
-    if (questionQuiz[i + 3] != choixReponse[i])
-    {
-      estEgal = false;
-    }
-  }
-  //Assert
-  assert.equal (obtenirChoix, true);
-}
+  var choix = ["a) Apport important de vitamines et de minéraux essentiels.","b) Alimentation faible en gras saturés et en cholestérol.","c) Diminution de développer des maladies chroniques, tel que le diabète, certains cancers et des maladies cardiovasculaires.","d) Toutes ses réponses"],;
 
+  //Act
+  var choixReponse = obtenirChoix(noQuestion);
+  //Assert
+
+  assert.deepEqual (choixReponse, choix, "Passed!");
+  }
 );
 
-QUnit.test ("WHEN_theUserReceiveQuestion8_THEN_obtenirChoix_returnsEachChoice"
+QUnit.test ("WHEN_theUserReceiveQuestion8_THEN_obtenirChoix_returnsEachChoices",
   function (assert){
   //Arrange
   var noQuestion = 7;
-  questionQuiz = [["Q8", 3, "URL", "Q8-C1","Q8-C2","Q8-C3","Q8-C4"]];
-  //Act
-  var choixReponse = obtenirChoix (noQuestion);
-  for (i = 0; i < choixReponse.length; i++)
-  {
-    if (questionQuiz[i + 3] != choixReponse[i])
-    {
-      estEgal = false;
-    }
-  }
-  //Assert
-  assert.equal (obtenirChoix, true);
-  }
+  var choix = ["a) Développer des maladies cardio-vasculaires","b) Développer certains cancers","c) Développer un diabète de type 2","d) Toutes ses réponses"];
 
+  //Act
+  var choixReponse = obtenirChoix(noQuestion);
+  //Assert
+
+  assert.deepEqual (choixReponse, choix, "Passed!");
+  }
 );
 
-QUnit.test ("WHEN_theUserReceiveQuestion9_THEN_obtenirChoix_returnsEachChoices"
+QUnit.test ("WHEN_theUserReceiveQuestion9_THEN_obtenirChoix_returnsEachChoices",
   function (assert){
   //Arrange
   var noQuestion = 8;
-  questionQuiz = [["Q9", 3, "URL", "Q9-C1","Q9-C2","Q9-C3","Q9-C4"]];
+  var choix = ["a) Chou kale","b) Légumineuse","c) Noix et graines","d) Tofu, seitan et tempeh"];
+
   //Act
-  var choixReponse = obtenirChoix (noQuestion);
-  for (i = 0; i < choixReponse.length; i++)
-  {
-    if (questionQuiz[i + 3] != choixReponse[i])
-    {
-      estEgal = false;
-    }
-  }
+  var choixReponse = obtenirChoix(noQuestion);
   //Assert
-  assert.equal (obtenirChoix, true);
+
+  assert.deepEqual (choixReponse, choix, "Passed!");
   }
 );
 
-QUnit.test ("WHEN_theUserReceiveQuestion10_THEN_obtenirChoix_returnsEachChoices"
+QUnit.test ("WHEN_theUserReceiveQuestion10_THEN_obtenirChoix_returnsEachChoices",
   function (assert){
   //Arrange
   var noQuestion = 9;
-  questionQuiz = [["Q10", 3, "URL", "Q10-C1","Q10-C2","Q10-C3","Q10-C4"]];
-  var estEqual = true;
-  //Act
-  var choixReponse = obtenirChoix (noQuestion);
-  for (i = 0; i < choixReponse.length; i++)
-  {
-    if (questionQuiz[i + 3] != choixReponse[i])
-    {
-      estEgal = false;
-    }
-  }
-  //Assert
-  assert.equal (obtenirChoix, true);
-}
+  var choix = ["a) Non, il manquera nécessairement de la vitamine D, de la vitamine B12 et de fer. ","b) Oui, même la plupart des aliments en contiennent plus de ces nutriments en proportion que les aliments d’origine animale.","c) Non, naturellement ces aliments ne contiennent pas de vitamines B12 et de vitamine D, mais s’ils sont enrichis ils comblent nos besoins nutritionnels.","d) Oui, les aliments tous les nutriments essentiels"];
 
+  //Act
+  var choixReponse = obtenirChoix(noQuestion);
+  //Assert
+
+  assert.deepEqual (choixReponse, choix, "Passed!");
+  }
 );
