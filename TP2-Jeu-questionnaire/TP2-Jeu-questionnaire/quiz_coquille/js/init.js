@@ -77,21 +77,31 @@ var tableauQuestions = [
   * @description Liste des questions posées dans le quiz.
   * @example [["Quel est le meilleur aliment pour votre santé?", 1, "https://www.google.ca" ,"Brocoli","Croustilles sans OGM","Crème glacée","Poutine déjeuner"]]
   */
-var questionsQuiz = [[]];
+var questionsQuiz = [];
 
 /**
  * @name choisirQuestions
  * @description Prend MAX_QUESTIONS de questions de tableauQuestions pour les mettre dans questionsQuiz.
  */
-// function choisirQuestions()
-// {
-//   for {
-//       random
-//       if !(exist deja){
-//         question.innerHTML = tableauQuestions[questionsQuiz[0]][0]
-//       }
-//   }
-// }
+function choisirQuestions(){
+  for (var i = 0 ; i < MAX_QUESTIONS ; i++){
+    var q = (Math.random(0,10))*10;
+    q = Math.floor(q);
+    if (!isItThereYet(q))
+      questionsQuiz.push(q);
+  }
+}
+
+function isItThereYet(newQ){
+  var isThere = false;
+  for (i = 0 ; i < MAX_QUESTIONS ; i++){
+    if (questionsQuiz[i] == newQ){
+      isThere = true;
+    }
+  }
+  return isThere;
+}
+
 
 /**
  * @name init
@@ -99,8 +109,7 @@ var questionsQuiz = [[]];
  */
 function init()
 {
-//  document.getElementById("btnChoix1").innerHTML = tableauQuestions[0][4];
-	// choisirQuestions();
+	 choisirQuestions();
 }
 
 window.onload = init;
