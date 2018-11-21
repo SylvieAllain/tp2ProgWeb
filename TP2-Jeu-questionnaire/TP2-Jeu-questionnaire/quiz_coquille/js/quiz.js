@@ -93,7 +93,9 @@ function obtenirChoix(noQuestion)
  */
 function afficherBonneReponse(noQuestion)
 {
-	//ajouter votre code ici
+	var choixDeReponses = obtenirChoix(noQuestion);
+  var bonneReponse = choixDeReponses[tableauQuestions[noQuestion][POS_REPONSE]];
+	document.getElementById("texteReponse").innerHTML = bonneReponse;
 }
 
 /**
@@ -121,7 +123,12 @@ function majTotalQuestion()
  */
 function majTexteChoix(noQuestion)
 {
-	//ajouter votre code ici
+	var choixDeReponses = obtenirChoix(noQuestion);
+	document.getElementById("txtChoix0").innerHTML = choixDeReponses[0];
+	document.getElementById("txtChoix1").innerHTML = choixDeReponses[1];
+	document.getElementById("txtChoix2").innerHTML = choixDeReponses[2];
+	document.getElementById("txtChoix3").innerHTML = choixDeReponses[3];
+
 }
 
 /**
@@ -131,7 +138,8 @@ function majTexteChoix(noQuestion)
  */
 function majTexteQuestion(noQuestion)
 {
-	//ajouter votre code ici
+	var texteQuestion = tableauChoix[noQuestion][0];
+	document.getElementById("texteQuestion").innerHTML = texteQuestion;
 
 	$('#texteQuestion').removeClass('animated bounceInLeft delay-1s');
 	$('#texteQuestion').removeClass('animated wobble delay-2s');

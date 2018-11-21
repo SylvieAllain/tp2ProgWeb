@@ -4,8 +4,8 @@
  * @author Thierry Légaré
  * @copyright 2018
  */
-
- /*QUnit.test ("WHEN_theUserGetTheRightAnswer_THEN_ajouterPoint_returns1point",
+/*
+ QUnit.test ("WHEN_theUserGetTheRightAnswer_THEN_ajouterPoint_returns1point",
    function(assert) {
     //Arrange
     //Act
