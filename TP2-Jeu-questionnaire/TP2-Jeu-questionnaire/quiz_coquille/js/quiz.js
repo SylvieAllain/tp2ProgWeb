@@ -79,7 +79,7 @@ function obtenirChoix(noQuestion)
 {
 	var question = tableauQuestions[noQuestion];
 	var tableauChoix = [];
-	for (i = 3; i < question.length; i++)
+	for (i = question.length - NB_CHOIX_MAX; i < question.length; i++)
 	{
 		tableauChoix.push(question[i]);
 	}

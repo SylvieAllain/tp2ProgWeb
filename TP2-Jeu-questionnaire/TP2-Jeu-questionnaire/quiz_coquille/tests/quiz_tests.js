@@ -36,7 +36,7 @@
    var choixReponse=obtenirChoix(noQuestion);
    //Assert
 
-   assert.deepEqual(choixReponse, choix, "Passed!");
+   assert.deepEqual(choixReponse, choix);
    });
 
 QUnit.test ("WHEN_theUserReceiveQuestion2_THEN_obtenirChoix_returnsEachChoices",
@@ -49,7 +49,7 @@ QUnit.test ("WHEN_theUserReceiveQuestion2_THEN_obtenirChoix_returnsEachChoices",
   var choixReponse = obtenirChoix(noQuestion);
   //Assert
 
-  assert.deepEqual (choixReponse, choix, "Passed!");
+  assert.deepEqual (choixReponse, choix);
   }
 );
 
@@ -63,7 +63,7 @@ QUnit.test ("WHEN_theUserReceiveQuestion3_THEN_obtenirChoix_returnsEachChoices",
   var choixReponse = obtenirChoix(noQuestion);
   //Assert
 
-  assert.deepEqual (choixReponse, choix, "Passed!");
+  assert.deepEqual (choixReponse, choix);
   }
 );
 
@@ -77,7 +77,7 @@ QUnit.test ("WHEN_theUserReceiveQuestion4_THEN_obtenirChoix_returnsEachChoices",
   var choixReponse = obtenirChoix(noQuestion);
   //Assert
 
-  assert.deepEqual (choixReponse, choix, "Passed!");
+  assert.deepEqual (choixReponse, choix);
   }
 );
 
@@ -91,7 +91,7 @@ QUnit.test ("WHEN_theUserReceiveQuestion5_THEN_obtenirChoix_returnsEachChoices",
   var choixReponse = obtenirChoix(noQuestion);
   //Assert
 
-  assert.deepEqual (choixReponse, choix, "Passed!");
+  assert.deepEqual (choixReponse, choix);
   }
 );
 
@@ -105,7 +105,7 @@ QUnit.test ("WHEN_theUserReceiveQuestion6_THEN_obtenirChoix_returnsEachChoices",
   var choixReponse = obtenirChoix(noQuestion);
   //Assert
 
-  assert.deepEqual (choixReponse, choix, "Passed!");
+  assert.deepEqual (choixReponse, choix);
   }
 );
 
@@ -119,7 +119,7 @@ QUnit.test ("WHEN_theUserReceiveQuestion7_THEN_obtenirChoix_returnsEachChoices",
   var choixReponse = obtenirChoix(noQuestion);
   //Assert
 
-  assert.deepEqual (choixReponse, choix, "Passed!");
+  assert.deepEqual (choixReponse, choix);
   }
 );
 
@@ -133,7 +133,7 @@ QUnit.test ("WHEN_theUserReceiveQuestion8_THEN_obtenirChoix_returnsEachChoices",
   var choixReponse = obtenirChoix(noQuestion);
   //Assert
 
-  assert.deepEqual (choixReponse, choix, "Passed!");
+  assert.deepEqual (choixReponse, choix);
   }
 );
 
@@ -162,6 +162,114 @@ QUnit.test ("WHEN_theUserReceiveQuestion10_THEN_obtenirChoix_returnsEachChoices"
   //Assert
 
   assert.deepEqual (choixReponse, choix);
+  }
+);
+
+QUnit.test ("WHEN_theUserReceiveQuestion1_THEN_obtenirBonneReponse_returnsGoodAnswer",
+  function (assert){
+  //Arrange
+  var noQuestion = 0;
+  var tableauReponse = "d) L’arrêt de la consommation de produits d’origine animale.";
+  //Act
+  var bonneReponse = obtenirBonneReponse(noQuestion);
+  //Assert
+  assert.deepEqual (bonneReponse, tableauReponse);
+  }
+);
+
+QUnit.test ("WHEN_theUserReceiveQuestion2_THEN_obtenirBonneReponse_returnsGoodAnswer",
+  function (assert){
+  //Arrange
+  var noQuestion = 1;
+  var tableauReponse = "b) 18%";
+  //Act
+  var bonneReponse = obtenirBonneReponse(noQuestion);
+  //Assert
+  assert.deepEqual (bonneReponse, tableauReponse);
+  }
+);
+
+QUnit.test ("WHEN_theUserReceiveQuestion3_THEN_obtenirBonneReponse_returnsGoodAnswer",
+  function (assert){
+  //Arrange
+  var noQuestion = 2;
+  var tableauReponse = "c) Le bœuf produit 330g comparativement à 2g pour les lentilles.";
+  //Act
+  var bonneReponse = obtenirBonneReponse(noQuestion);
+  //Assert
+  assert.deepEqual (bonneReponse, tableauReponse);
+  }
+);
+
+QUnit.test ("WHEN_theUserReceiveQuestion4_THEN_obtenirBonneReponse_returnsGoodAnswer",
+  function (assert){
+  //Arrange
+  var noQuestion = 3;
+  var tableauReponse = "d) le flexitarisme";
+  //Act
+  var bonneReponse = obtenirBonneReponse(noQuestion);
+  //Assert
+  assert.deepEqual (bonneReponse, tableauReponse);
+  }
+);
+
+QUnit.test ("WHEN_theUserReceiveQuestion5_THEN_obtenirBonneReponse_returnsGoodAnswer",
+  function (assert){
+  //Arrange
+  var noQuestion = 4;
+  var tableauReponse = "b) 70%";
+  //Act
+  var bonneReponse = obtenirBonneReponse(noQuestion);
+  //Assert
+  assert.deepEqual (bonneReponse, tableauReponse);
+  }
+);
+
+QUnit.test ("WHEN_theUserReceiveQuestion6_THEN_obtenirBonneReponse_returnsGoodAnswer",
+  function (assert){
+  //Arrange
+  var noQuestion = 5;
+  var tableauReponse = "d) Toutes ses réponses";
+  //Act
+  var bonneReponse = obtenirBonneReponse(noQuestion);
+  //Assert
+  assert.deepEqual (bonneReponse, tableauReponse);
+  }
+);
+
+QUnit.test ("WHEN_theUserReceiveQuestion7_THEN_obtenirBonneReponse_returnsGoodAnswer",
+  function (assert){
+  //Arrange
+  var noQuestion = 6;
+  var tableauReponse = "d) Toutes ses réponses";
+  //Act
+  var bonneReponse = obtenirBonneReponse(noQuestion);
+  //Assert
+  assert.deepEqual (bonneReponse, tableauReponse);
+  }
+);
+
+QUnit.test ("WHEN_theUserReceiveQuestion8_THEN_obtenirBonneReponse_returnsGoodAnswer",
+  function (assert){
+  //Arrange
+  var noQuestion = 7;
+  var tableauReponse = "d) Toutes ses réponses";
+  //Act
+  var bonneReponse = obtenirBonneReponse(noQuestion);
+  //Assert
+  assert.deepEqual (bonneReponse, tableauReponse);
+  }
+);
+
+QUnit.test ("WHEN_theUserReceiveQuestion9_THEN_obtenirBonneReponse_returnsGoodAnswer",
+  function (assert){
+  //Arrange
+  var noQuestion = 8;
+  var tableauReponse = "a) Chou kale";
+  //Act
+  var bonneReponse = obtenirBonneReponse(noQuestion);
+  //Assert
+  assert.deepEqual (bonneReponse, tableauReponse);
   }
 );
 
