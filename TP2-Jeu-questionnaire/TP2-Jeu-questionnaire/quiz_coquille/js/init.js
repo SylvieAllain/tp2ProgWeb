@@ -110,6 +110,7 @@ function isItThereYet(newQ){
 function init()
 {
 	 choisirQuestions();
+    majPointage();
 }
 
-window.onload = init;
+window.onload = init();

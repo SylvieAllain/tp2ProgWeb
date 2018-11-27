@@ -23,7 +23,7 @@ function validerQuestion(noQuestion, choixUtilisateur)
  */
 function ajouterPoint()
 {
-	return 1;
+	totalPointage++;
 }
 
 /**
@@ -33,7 +33,7 @@ function ajouterPoint()
  */
 function obtenirPointage()
 {
-	//ajouter votre code ici
+	return totalPointage;
 }
 
 /**
@@ -65,7 +65,7 @@ function chargerQuestionSuivante()
 function obtenirBonneReponse(noQuestion)
 {
 	var choixDeReponses = obtenirChoix(noQuestion);
-  var bonneReponse = choixDeReponses[tableauQuestions[noQuestion][POS_REPONSE]];
+    var bonneReponse = choixDeReponses[tableauQuestions[noQuestion][POS_REPONSE]];
 	return bonneReponse;
 }
 
@@ -77,7 +77,7 @@ function obtenirBonneReponse(noQuestion)
  */
 function obtenirChoix(noQuestion)
 {
-	var question = tableauQuestions[noQuestion];
+	var question = questionsQuiz[noQuestion];
 	var tableauChoix = [];
 	for (i = question.length - NB_CHOIX_MAX; i < question.length; i++)
 	{
@@ -94,7 +94,7 @@ function obtenirChoix(noQuestion)
 function afficherBonneReponse(noQuestion)
 {
 	var choixDeReponses = obtenirChoix(noQuestion);
-  var bonneReponse = choixDeReponses[tableauQuestions[noQuestion][POS_REPONSE]];
+  var bonneReponse = choixDeReponses[questionsQuiz[noQuestion][POS_REPONSE]];
 	document.getElementById("texteReponse").innerHTML = bonneReponse;
 }
 
@@ -104,7 +104,8 @@ function afficherBonneReponse(noQuestion)
  */
 function majPointage()
 {
-	//ajouter votre code ici
+  var thisthing = obtenirPointage();
+document.getElementById("totalPoints").innerHTML =  thisthing + "/ 5";
 }
 
 /**
@@ -128,7 +129,6 @@ function majTexteChoix(noQuestion)
 	document.getElementById("txtChoix1").innerHTML = choixDeReponses[1];
 	document.getElementById("txtChoix2").innerHTML = choixDeReponses[2];
 	document.getElementById("txtChoix3").innerHTML = choixDeReponses[3];
-
 }
 
 /**
@@ -148,7 +148,7 @@ function majTexteQuestion(noQuestion)
 
 /**
  * @name majNoQuestionCourant
- * @description Modifie l'interface en affichant une le numéro de la question courante.
+ * @description Modifie l'interface en affichant le numéro de la question courante.
  */
 function majNoQuestionCourant()
 {
