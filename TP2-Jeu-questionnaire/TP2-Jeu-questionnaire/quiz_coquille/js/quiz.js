@@ -44,7 +44,7 @@ function obtenirPointage()
  */
 function estFinPartie(questionCourante)
 {
-	//ajouter votre code ici
+	return questionCourante == MAX_QUESTIONS ? true : false;
 }
 
 /**
@@ -53,7 +53,7 @@ function estFinPartie(questionCourante)
  */
 function chargerQuestionSuivante()
 {
-	//ajouter votre code ici
+	questionCourante++;
 }
 
 /**
@@ -65,7 +65,7 @@ function chargerQuestionSuivante()
 function obtenirBonneReponse(noQuestion)
 {
 	var choixDeReponses = obtenirChoix(noQuestion);
-    var bonneReponse = choixDeReponses[tableauQuestions[noQuestion][POS_REPONSE]];
+       var bonneReponse = choixDeReponses[questionsQuiz[noQuestion][POS_REPONSE]];
 	return bonneReponse;
 }
 
@@ -93,9 +93,7 @@ function obtenirChoix(noQuestion)
  */
 function afficherBonneReponse(noQuestion)
 {
-	var choixDeReponses = obtenirChoix(noQuestion);
-  var bonneReponse = choixDeReponses[questionsQuiz[noQuestion][POS_REPONSE]];
-	document.getElementById("texteReponse").innerHTML = bonneReponse;
+	//document.getElementById("texteReponse").innerHTML = obtenirBonneReponse(noQuestion);
 }
 
 /**
@@ -104,8 +102,7 @@ function afficherBonneReponse(noQuestion)
  */
 function majPointage()
 {
-  var thisthing = obtenirPointage();
-document.getElementById("totalPoints").innerHTML =  thisthing + "/ 5";
+  document.getElementById("totalPoints").innerHTML =  obtenirPointage();
 }
 
 /**
@@ -114,7 +111,7 @@ document.getElementById("totalPoints").innerHTML =  thisthing + "/ 5";
  */
 function majTotalQuestion()
 {
-	//ajouter votre code ici
+    document.getElementById("totalQuestions").innerHTML =  MAX_QUESTIONS;
 }
 
 /**
@@ -138,7 +135,8 @@ function majTexteChoix(noQuestion)
  */
 function majTexteQuestion(noQuestion)
 {
-	var texteQuestion = tableauChoix[noQuestion][0];
+        console.log("majTexteQuestion");
+	var texteQuestion = questionsQuiz[noQuestion][0];
 	document.getElementById("texteQuestion").innerHTML = texteQuestion;
 
 	$('#texteQuestion').removeClass('animated bounceInLeft delay-1s');
@@ -152,7 +150,7 @@ function majTexteQuestion(noQuestion)
  */
 function majNoQuestionCourant()
 {
-	//ajouter votre code ici
+    document.getElementById("noQuestionCourante").innerHTML =  questionCourante;
 }
 
 /**
@@ -179,17 +177,26 @@ function majProgression()
  */
 function majInterface()
 {
-	//ajouter votre code ici
+    console.log("majInterface");
+    majPointage();
+    majTotalQuestion();
+    majTexteChoix(questionCourante);
+    majTexteQuestion(questionCourante);
+    majNoQuestionCourant();	
+    //remiseAZeroBoutons();
+    //majProgression();
 }
 
 /**
  * @name selectionnerChoix
- * @description Modifie l'interface pour changer l'apparence du bouton cliqué et activer le bouton Valider.
+ * @description Modifie l'interface pour changer l'apparence du bouton cliqué.
  * @param {*} noChoix Numéro du choix de réponse sélectionné.
  */
 function selectionnerChoix(noChoix)
 {
-	//ajouter votre code ici
+    alert(noChoix);
+    chargerQuestionSuivante();
+    majInterface();
 }
 
 /**

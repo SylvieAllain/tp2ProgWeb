@@ -84,11 +84,13 @@ var questionsQuiz = [];
  * @description Prend MAX_QUESTIONS de questions de tableauQuestions pour les mettre dans questionsQuiz.
  */
 function choisirQuestions(){
+  console.log("choisirQuestion");
+  questionsQuiz = new Array(0);
   for (var i = 0 ; i < MAX_QUESTIONS ; i++){
     var q = (Math.random(0,10))*10;
     q = Math.floor(q);
     if (!isItThereYet(q))
-      questionsQuiz.push(q);
+      questionsQuiz.push(tableauQuestions[q]);
   }
 }
 
@@ -109,8 +111,8 @@ function isItThereYet(newQ){
  */
 function init()
 {
+    console.log("init");
 	 choisirQuestions();
-    majPointage();
 }
 
 window.onload = init();
