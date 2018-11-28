@@ -14,7 +14,10 @@
  */
 function validerQuestion(noQuestion, choixUtilisateur)
 {
-	//ajouter votre code ici
+        if (choixUtilisateur == obtenirBonneReponse(noQuestion)) {
+                return true;
+        }
+	return false;
 }
 
 /**
@@ -37,6 +40,17 @@ function obtenirPointage()
 }
 
 /**
+ * @name obtenirTotalQuestion
+ * @description Obtiens le nombre de question total déjà posée.
+ * @returns Le nombre de question déjà posée
+ */
+function obtenirTotalQuestion()
+{
+    return MAX_QUESTIONS - (MAX_QUESTIONS - questionCourante);
+
+}
+
+/**
  * @name estFinPartie
  * @description Vérifie si l'on a atteint la fin de la partie.
  * @param {*} questionCourante Index de la question courante
@@ -44,7 +58,8 @@ function obtenirPointage()
  */
 function estFinPartie(questionCourante)
 {
-	return questionCourante == MAX_QUESTIONS ? true : false;
+    var isTheEnd = questionCourante == MAX_QUESTIONS ? true : false;
+    return isTheEnd
 }
 
 /**
@@ -53,7 +68,9 @@ function estFinPartie(questionCourante)
  */
 function chargerQuestionSuivante()
 {
-	questionCourante++;
+    if (isStarted) {
+        questionCourante++;
+    }
 }
 
 /**
@@ -64,9 +81,9 @@ function chargerQuestionSuivante()
  */
 function obtenirBonneReponse(noQuestion)
 {
-	var choixDeReponses = obtenirChoix(noQuestion);
-       var bonneReponse = choixDeReponses[questionsQuiz[noQuestion][POS_REPONSE]];
-	return bonneReponse;
+//    var reponse = obtenirChoix(noQuestion);
+//    var bonneReponse = reponse[];
+       return questionsQuiz[noQuestion][POS_REPONSE];
 }
 
 /**
@@ -93,7 +110,10 @@ function obtenirChoix(noQuestion)
  */
 function afficherBonneReponse(noQuestion)
 {
-	//document.getElementById("texteReponse").innerHTML = obtenirBonneReponse(noQuestion);
+    var test = obtenirChoix(noQuestion);
+	document.getElementById("texteReponse").innerHTML = test[obtenirBonneReponse(noQuestion)];
+//obtenirChoix(obtenirBonneReponse(noQuestion))[];
+        //obtenirBonneReponse(noQuestion);
 }
 
 /**
@@ -111,7 +131,7 @@ function majPointage()
  */
 function majTotalQuestion()
 {
-    document.getElementById("totalQuestions").innerHTML =  MAX_QUESTIONS;
+    document.getElementById("totalQuestions").innerHTML =  obtenirTotalQuestion();
 }
 
 /**
@@ -135,13 +155,12 @@ function majTexteChoix(noQuestion)
  */
 function majTexteQuestion(noQuestion)
 {
-        console.log("majTexteQuestion");
 	var texteQuestion = questionsQuiz[noQuestion][0];
 	document.getElementById("texteQuestion").innerHTML = texteQuestion;
 
-	$('#texteQuestion').removeClass('animated bounceInLeft delay-1s');
-	$('#texteQuestion').removeClass('animated wobble delay-2s');
-	$('#texteQuestion').addClass('animated bounceInLeft delay-1s');
+//	$('#texteQuestion').removeClass('animated bounceInLeft delay-1s');
+//	$('#texteQuestion').removeClass('animated wobble delay-2s');
+//	$('#texteQuestion').addClass('animated bounceInLeft delay-1s');
 }
 
 /**
@@ -150,7 +169,7 @@ function majTexteQuestion(noQuestion)
  */
 function majNoQuestionCourant()
 {
-    document.getElementById("noQuestionCourante").innerHTML =  questionCourante;
+    document.getElementById("noQuestionCourante").innerHTML =  questionCourante + 1;
 }
 
 /**
@@ -158,8 +177,11 @@ function majNoQuestionCourant()
  * @description Modifie l'interface en remettant à l'état initial les boutons de réponse.
  */
 function remiseAZeroBoutons()
-{
-	//ajouter votre code ici
+{ 
+        document.getElementById("btnChoix1").style.backgroundColor = "white";
+        document.getElementById("btnChoix2").style.backgroundColor = "white";
+        document.getElementById("btnChoix3").style.backgroundColor = "white";
+        document.getElementById("btnChoix4").style.backgroundColor = "white";
 }
 
 /**
@@ -177,15 +199,32 @@ function majProgression()
  */
 function majInterface()
 {
-    console.log("majInterface");
     majPointage();
     majTotalQuestion();
+    if (isStarted) {
+         setTimeout(function () {
+            remiseAZeroBoutons();
+            majTexteChoix(questionCourante);
+            majTexteQuestion(questionCourante);
+            majNoQuestionCourant();	
+        //    majProgression();
+         }, 1800);
+    }
+    else {
+        isStarted = true;
+        majQuestion();
+    }
+    
+}
+function majQuestion()
+{
+    remiseAZeroBoutons();
     majTexteChoix(questionCourante);
     majTexteQuestion(questionCourante);
     majNoQuestionCourant();	
-    //remiseAZeroBoutons();
-    //majProgression();
+//    majProgression();
 }
+
 
 /**
  * @name selectionnerChoix
@@ -194,7 +233,19 @@ function majInterface()
  */
 function selectionnerChoix(noChoix)
 {
-    alert(noChoix);
+    if (isStarted) {
+        if (validerQuestion(questionCourante, noChoix)){
+            document.getElementById(obtenirButtonId(noChoix)).style.backgroundColor = "green";
+            ajouterPoint();
+        }
+        else{
+            afficherBonneReponse(questionCourante);
+            $('#modalReponse').modal();
+        }
+        if (estFinPartie()) {
+            afficherBoiteFinDeJeu();
+        }
+    }
     chargerQuestionSuivante();
     majInterface();
 }
@@ -205,5 +256,33 @@ function selectionnerChoix(noChoix)
  */
 function afficherBoiteFinDeJeu()
 {
-	//ajouter votre code ici
+	$('#modalReponse').modal();
+        document.getElementById("texteReponse").innerHTML = "Merci d'avoir jouer, vous avez réussi " + obtenirPointage() + " questions sur " + MAX_QUESTIONS;
+}
+
+/**
+ * @name obtenirButtonId
+ * @description Modifie l'interface pour afficher la boîte de résumé et cacher la boîte de question.
+ * @param {*} noChoix Numéro du bouton cliqué.
+ * @returns Le id du bouton cliqué (texte).
+ */
+function obtenirButtonId(noChoix) {
+     var choix = "";
+        switch (noChoix) {
+            case 0:
+                choix = "btnChoix1";
+                break;
+            case 1:
+                choix = "btnChoix2";
+                break;
+            case 2:
+                choix = "btnChoix3";
+                break;
+            case 3:
+                choix = "btnChoix4";
+                break;
+            default:
+                break;
+        }
+return choix;
 }

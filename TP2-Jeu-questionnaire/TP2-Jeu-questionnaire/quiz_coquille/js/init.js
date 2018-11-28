@@ -52,6 +52,14 @@ var reponseUtilisateur = 0;
 
 /**
   * @global
+  * @name isStarted
+  * @type {bollean}
+  * @description True si le partie est commencé.
+  */
+var isStarted = false;
+
+/**
+  * @global
   * @name tableauQuestions
   * @type {object}
   * @description Liste des questions disponibles pour le quiz.
@@ -84,7 +92,6 @@ var questionsQuiz = [];
  * @description Prend MAX_QUESTIONS de questions de tableauQuestions pour les mettre dans questionsQuiz.
  */
 function choisirQuestions(){
-  console.log("choisirQuestion");
   questionsQuiz = new Array(0);
   for (var i = 0 ; i < MAX_QUESTIONS ; i++){
     var q = (Math.random(0,10))*10;
@@ -111,8 +118,7 @@ function isItThereYet(newQ){
  */
 function init()
 {
-    console.log("init");
-	 choisirQuestions();
+  choisirQuestions();
 }
 
 window.onload = init();
