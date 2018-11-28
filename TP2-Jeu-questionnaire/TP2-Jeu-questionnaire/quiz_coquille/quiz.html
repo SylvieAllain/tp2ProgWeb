@@ -50,7 +50,7 @@
 
 			<div class="row" style="padding:1em;">
 				<div class="col-6">
-					<h3>Question # <span id="noQuestionCourante">0</span></h3>
+					<h3>Question # <span id="noQuestionCourante">1</span></h3>
 				</div>
 				<div class="col-6 text-right">
 					<h3>Pointage: <span id="totalPoints">0</span>/<span id="totalQuestions"></span></h3>
@@ -127,22 +127,11 @@
 		</div>
 
 		<script>
-			document.getElementById("txtChoix0").innerHTML = "Commencez";
-			document.getElementById("txtChoix1").innerHTML = "la";
-			document.getElementById("txtChoix2").innerHTML = "partie";
-			document.getElementById("txtChoix3").innerHTML = "???";
-			document.getElementById("btnChoix1").addEventListener("click", function (){
-				selectionnerChoix(0);
-			});
-			document.getElementById("btnChoix2").addEventListener("click", function (){
-				selectionnerChoix(1);
-			});
-			document.getElementById("btnChoix3").addEventListener("click", function (){
-				selectionnerChoix(2);
-			});
-			document.getElementById("btnChoix4").addEventListener("click", function (){
-				selectionnerChoix(3);
-			});
+			majInterface();
+			document.getElementById("btnChoix1").addEventListener("click", selectionnerChoix(0));
+			document.getElementById("btnChoix2").addEventListener("click", selectionnerChoix(1));
+			document.getElementById("btnChoix3").addEventListener("click", selectionnerChoix(2));
+			document.getElementById("btnChoix4").addEventListener("click", selectionnerChoix(3));
 		</script>
 
 		<!-- Audio CC0 - https://www.zapsplat.com/ -->

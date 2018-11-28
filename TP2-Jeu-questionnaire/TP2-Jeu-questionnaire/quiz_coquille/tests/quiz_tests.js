@@ -38,11 +38,21 @@
   return tableauChoix;
  }
 
+//fonction pour les tests, valider si la bonne réponse correspond au ce qui est indiquer par rapport aux questions initiales.
  function obtenirBonneReponseOriginalArray(noQuestion)
  {
  	var choixDeReponses = obtenirChoixOriginalArray(noQuestion);
   var bonneReponse = choixDeReponses[tableauQuestions[noQuestion][POS_REPONSE]];
  	return bonneReponse;
+ }
+
+ //fonction pour les tests, valider la validation de réponse par rapport aux questions initiales.
+ function validerQuestionOriginalArray(noQuestion, choixUtilisateur)
+ {
+         if (choixUtilisateur == obtenirBonneReponseOriginalArray(noQuestion)) {
+                 return true;
+         }
+ 	return false;
  }
 
  QUnit.test("WHEN_theUserReceiveQuestion1_THEN_obtenirChoix_returnsEachChoices", function(assert){
@@ -310,13 +320,13 @@ QUnit.test ("WHEN_theUserClickOnTheGoodAnswer_THEN_validerReponse_returnsTrue",
   function (assert){
     //Arrange
     var noQuestion = 0;
-    var choixUtilisateur = 3;
+    var choixUtilisateur = obtenirBonneReponseOriginalArray(noQuestion);
 
     //Act
-    var isGoodAnswer = validerQuestion(noQuestion, choixUtilisateur);
+    var isGoodAnswer = validerQuestionOriginalArray(noQuestion, choixUtilisateur);
 
     //Assert
-    assert.Equal (isGoodAnswer, true);
+    assert.equal (isGoodAnswer, true);
   }
 );
 
@@ -327,10 +337,10 @@ QUnit.test ("WHEN_theUserClickOnTheGoodAnswer_THEN_validerReponse_returnsTrue",
       var choixUtilisateur = 2;
 
       //Act
-      var isGoodAnswer = validerQuestion(noQuestion, choixUtilisateur);
+      var isGoodAnswer = validerQuestionOriginalArray(noQuestion, choixUtilisateur);
 
       //Assert
-      assert.Equal (isGoodAnswer, false);
+      assert.equal (isGoodAnswer, false);
     }
   );
 
@@ -342,7 +352,7 @@ QUnit.test ("WHEN_theUserClickOnTheGoodAnswer_THEN_validerReponse_returnsTrue",
       var totalPointage = obtenirPointage();
 
       //Assert
-      assert.Equal (totalPointage, 3);
+      assert.equal (totalPointage, 3);
     }
   );
 
@@ -354,7 +364,7 @@ QUnit.test ("WHEN_theUserClickOnTheGoodAnswer_THEN_validerReponse_returnsTrue",
       var totalPointage = obtenirPointage();
 
       //Assert
-      assert.Equal (totalPointage, 0);
+      assert.equal (totalPointage, 0);
     }
   );
 
@@ -366,6 +376,6 @@ QUnit.test ("WHEN_theUserClickOnTheGoodAnswer_THEN_validerReponse_returnsTrue",
       var totalPointage = obtenirPointage();
 
       //Assert
-      assert.Equal (totalPointage, 5);
+      assert.equal (totalPointage, 5);
     }
   );
