@@ -115,7 +115,7 @@ function majPointage()
  */
 function majTotalQuestion()
 {
-    document.getElementById("totalQuestions").innerHTML =  obtenirTotalQuestion() - 1;
+    document.getElementById("totalQuestions").innerHTML =  obtenirTotalQuestion();
 }
 
 /**
@@ -149,11 +149,11 @@ function majTexteChoix(noQuestion)
 function majTexteQuestion(noQuestion)
 {
 	var texteQuestion = questionsQuiz[noQuestion][0];
+        document.getElementById("texteQuestion").innerHTML = texteQuestion;
 	    
 	$('#texteQuestion').removeClass('animated bounceInLeft delay-1s');
 	$('#texteQuestion').removeClass('animated wobble delay-2s');
 	$('#texteQuestion').addClass('animated bounceInLeft delay-1s');
-        document.getElementById("texteQuestion").innerHTML = texteQuestion;
 }
 
 /**
@@ -182,11 +182,11 @@ function majProgression()
  * @description Modifie l'interface en changeant la question, les choix de réponses, en mettant à jour le pointage, la barre de progression et le numéro de la question courante et en remettant à zéro les boutons.
  */
 function majInterface() {
+    majTexteQuestion(questionCourante-1);
     majPointage();
     majTotalQuestion();
     remiseAZeroBoutons();
     majTexteChoix(questionCourante-1);
-    majTexteQuestion(questionCourante-1);
     majNoQuestionCourant();	
 //    majProgression();
 }
@@ -203,67 +203,32 @@ function selectionnerChoix(noChoix)
         if (questionCourante > 0){
             var colour = "";
             var timeOut = 0;
+            var sound = "";
             reponseUtilisateur = noChoix
             if (validerQuestion(questionCourante -1,reponseUtilisateur)){
+                sound = document.getElementById("successAudio");
                 colour = "green";
                 ajouterPoint(); 
             } 
             else{
+                sound = document.getElementById("errorAudio");
                 colour = "red";
                 afficherBonneReponse(questionCourante -1);
                 timeOut = 1500;
             }
             document.getElementById("btnChoix" + (reponseUtilisateur + 1)).style.backgroundColor = colour;
+           // sound.play();
             chargerQuestionSuivante();
             quoiAfficher(timeOut);
             
         }
         else{
+          //  document.getElementById("introAudio").play();
             chargerQuestionSuivante();
             majInterface();
             ready = true;
         }
-    }    
-//    if (isFirstPlay){
-//        isFirstPlay = false;
-//        isStarted = true;
-//        chargerQuestionSuivante();
-//        majInterface(0);
-//    }
-    
-//    
-//    if (isStarted) {
-//        reponseUtilisateur = noChoix;
-//        var bonneReponse = validerQuestion(questionCourante, reponseUtilisateur);
-//        if (bonneReponse){
-//            colour = "green";
-//            ajouterPoint();
-//        }
-//        else{
-//            colour = "red";
-//            afficherBonneReponse(questionCourante-1);
-//            $('#modalReponse').modal();
-//            timeOut = 1500;
-//        }
-//        var btnName = "btnChoix" + noChoix + 1;
-//        document.getElementById("btnChoix" + (noChoix + 1)).style.backgroundColor = colour;
-//        chargerQuestionSuivante();
-//        majInterface(timeOut);
-//    }
-//    else if (!(isFirstPlay)) {
-//        chargerQuestionSuivante();
-//        isStarted = true;
-//    }
-//    else {
-//        chargerQuestionSuivante();
-//        isStarted = true;
-//        majInterface(0);
-//        isFirstPlay = false;
-//    }
-//    
-//    if (estFinPartie(questionCourante)) {
-//            afficherBoiteFinDeJeu();
-//    }
+    }  
 }
 
 function quoiAfficher(timeOut) {
@@ -277,7 +242,6 @@ function quoiAfficher(timeOut) {
         ready = true;
     }, timeOut);
 }
-
 
 /**
  * @name validerQuestion
@@ -301,12 +265,11 @@ function validerQuestion(noQuestion, choixUtilisateur)
  */
 function afficherBoiteFinDeJeu()
 {    
-       
             document.getElementById("texteReponse").previousSibling.innerHTML = "";
             document.getElementById("texteReponse").innerHTML = "Merci d'avoir jouer, vous avez réussi " + obtenirPointage() + " questions sur " + MAX_QUESTIONS;
             document.getElementById("texteReponse").nextSibling.innerHTML = "";
-    	    $('#modalReponse').modal();
-
+            $('#modalReponse').modal();
+            
             totalPointage = 0;
             questionCourante = 1;
             questionsQuiz = [];
@@ -323,7 +286,6 @@ function afficherBoiteFinDeJeu()
             
             questionCourante = 0;
             remiseAZeroBoutons();
-    //        chargerQuestionSuivante();
             majNoQuestionCourant();	
     //            majProgression();
             init();
@@ -333,29 +295,6 @@ function afficherBoiteFinDeJeu()
             }, 500)
 }
 
-/**
- * @name obtenirButtonId
- * @description Modifie l'interface pour afficher la boîte de résumé et cacher la boîte de question.
- * @param {*} noChoix Numéro du bouton cliqué.
- * @returns Le id du bouton cliqué (texte).
- */
-function obtenirButtonId(noChoix) {
-     var choix = "";
-        switch (noChoix) {
-            case 0:
-                choix = "btnChoix1";
-                break;
-            case 1:
-                choix = "btnChoix2";
-                break;
-            case 2:
-                choix = "btnChoix3";
-                break;
-            case 3:
-                choix = "btnChoix4";
-                break;
-            default:
-                break;
-        }
-return choix;
-}
+function playIntro() {
+    //document.getElementById("introAudio").play();
+} 

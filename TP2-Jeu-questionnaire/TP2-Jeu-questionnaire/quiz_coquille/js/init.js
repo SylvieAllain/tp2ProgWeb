@@ -93,31 +93,13 @@ var questionsQuiz = [];
  */
 function choisirQuestions(){
   questionsQuiz = new Array(0);
-  while (questionsQuiz.length < MAX_QUESTIONS){
+  while (questionsQuiz.length -1 < MAX_QUESTIONS){
     var q = (Math.random(0,10))*10;
     q = Math.floor(q);
-    if (!(isItThereYet(q)))
+    if (questionsQuiz.indexOf(tableauQuestions[q]) < 0)
       questionsQuiz.push(tableauQuestions[q]);
   }
 }
-
-/**
- * @name isItThereYet
- * @description Prend newQ et verifie si la question existe déjà dans questionsQuiz.
- * @returns {*} isThere true si l'element existe déjà dans questionsQuiz, false, sinon.
- */
-function isItThereYet(newQ){
-  var isThere = false;
-  var i =0;
-  while (i < questionsQuiz.length){
-    if (tableauQuestions[newQ] == questionsQuiz[i]){
-      isThere = true;
-    }
-    i++;
-  }
-  return isThere;
-}
-
 
 /**
  * @name init
