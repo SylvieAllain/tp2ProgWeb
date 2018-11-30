@@ -52,11 +52,11 @@ var reponseUtilisateur = 0;
 
 /**
   * @global
-  * @name isStarted
-  * @type {bollean}
-  * @description True si le partie est commencé.
+  * @name ready
+  * @type {boolean}
+  * @description pres pour un autre click.
   */
-var isStarted = false;
+var ready = true;
 
 /**
   * @global
@@ -93,20 +93,27 @@ var questionsQuiz = [];
  */
 function choisirQuestions(){
   questionsQuiz = new Array(0);
-  for (var i = 0 ; i < MAX_QUESTIONS ; i++){
+  while (questionsQuiz.length < MAX_QUESTIONS){
     var q = (Math.random(0,10))*10;
     q = Math.floor(q);
-    if (!isItThereYet(q))
+    if (!(isItThereYet(q)))
       questionsQuiz.push(tableauQuestions[q]);
   }
 }
 
+/**
+ * @name isItThereYet
+ * @description Prend newQ et verifie si la question existe déjà dans questionsQuiz.
+ * @returns {*} isThere true si l'element existe déjà dans questionsQuiz, false, sinon.
+ */
 function isItThereYet(newQ){
   var isThere = false;
-  for (i = 0 ; i < MAX_QUESTIONS ; i++){
-    if (questionsQuiz[i] == newQ){
+  var i =0;
+  while (i < questionsQuiz.length){
+    if (tableauQuestions[newQ] == questionsQuiz[i]){
       isThere = true;
     }
+    i++;
   }
   return isThere;
 }

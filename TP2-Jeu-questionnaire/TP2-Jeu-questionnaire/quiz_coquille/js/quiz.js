@@ -6,18 +6,13 @@
  */
 
 /**
- * @name validerQuestion
- * @description Valide si la réponse choisie est la bonne.
- * @param {*} noQuestion numéro de la question
- * @param {*} choixUtilisateur choix fait par l'utilisateur
- * @returns true si la réponse choisie est bonne, sinon false
+ * @name obtenirPointage
+ * @description Obtiens le pointage total accumulé.
+ * @returns Le pointage total
  */
-function validerQuestion(noQuestion, choixUtilisateur)
+function obtenirPointage()
 {
-        if (choixUtilisateur == obtenirBonneReponse(noQuestion)) {
-                return true;
-        }
-	return false;
+    return totalPointage;
 }
 
 /**
@@ -30,24 +25,22 @@ function ajouterPoint()
 }
 
 /**
- * @name obtenirPointage
- * @description Obtiens le pointage total accumulé.
- * @returns Le pointage total
- */
-function obtenirPointage()
-{
-	return totalPointage;
-}
-
-/**
  * @name obtenirTotalQuestion
  * @description Obtiens le nombre de question total déjà posée.
- * @returns Le nombre de question déjà posée
+ * @returns Le nombre de question déjà posée.
  */
 function obtenirTotalQuestion()
 {
-    return MAX_QUESTIONS - (MAX_QUESTIONS - questionCourante);
+    return questionCourante;
+}
 
+/**
+ * @name chargerQuestionSuivante
+ * @description Incrémente l'index indiquant la question courante.
+ */
+function chargerQuestionSuivante()
+{
+    questionCourante++;
 }
 
 /**
@@ -58,32 +51,10 @@ function obtenirTotalQuestion()
  */
 function estFinPartie(questionCourante)
 {
-    var isTheEnd = questionCourante == MAX_QUESTIONS ? true : false;
-    return isTheEnd
-}
-
-/**
- * @name chargerQuestionSuivante
- * @description Incrémente l'index indiquant la question courante.
- */
-function chargerQuestionSuivante()
-{
-    if (isStarted) {
-        questionCourante++;
+    if (questionCourante > MAX_QUESTIONS){
+        return true;
     }
-}
-
-/**
- * @name obtenirBonneReponse
- * @description Incrémente l'index indiquant la question courante.
- * @param {*} noQuestion L'index de la question
- * @returns retourne la bonne réponse
- */
-function obtenirBonneReponse(noQuestion)
-{
-//    var reponse = obtenirChoix(noQuestion);
-//    var bonneReponse = reponse[];
-       return questionsQuiz[noQuestion][POS_REPONSE];
+ return false;
 }
 
 /**
@@ -94,13 +65,25 @@ function obtenirBonneReponse(noQuestion)
  */
 function obtenirChoix(noQuestion)
 {
-	var question = questionsQuiz[noQuestion];
-	var tableauChoix = [];
-	for (i = question.length - NB_CHOIX_MAX; i < question.length; i++)
-	{
-		tableauChoix.push(question[i]);
-	}
-	return tableauChoix;
+    var question = questionsQuiz[noQuestion];
+    var tableauChoix = [];
+    for (i = question.length - NB_CHOIX_MAX; i < question.length; i++)
+    {
+        tableauChoix.push(question[i]);
+    }
+    return tableauChoix;
+}
+
+/**
+ * @name obtenirBonneReponse
+ * @description Incrémente l'index indiquant la question courante.
+ * @param {*} noQuestion L'index de la question
+ * @returns retourne la bonne réponse
+ */
+function obtenirBonneReponse(noQuestion)
+{
+        var choixDeReponse = obtenirChoix(noQuestion);
+       return choixDeReponse[questionsQuiz[noQuestion][POS_REPONSE]];
 }
 
 /**
@@ -110,10 +93,10 @@ function obtenirChoix(noQuestion)
  */
 function afficherBonneReponse(noQuestion)
 {
-    var test = obtenirChoix(noQuestion);
-	document.getElementById("texteReponse").innerHTML = test[obtenirBonneReponse(noQuestion)];
-//obtenirChoix(obtenirBonneReponse(noQuestion))[];
-        //obtenirBonneReponse(noQuestion);
+    var bonneReponse = obtenirBonneReponse(noQuestion);
+    document.getElementById("texteReponse").innerHTML = bonneReponse;
+    document.getElementById("lienPlusInfos").href = questionsQuiz[noQuestion][2];
+    document.getElementById("lienPlusInfos").innerHTML = questionsQuiz[noQuestion][2];
 }
 
 /**
@@ -131,7 +114,16 @@ function majPointage()
  */
 function majTotalQuestion()
 {
-    document.getElementById("totalQuestions").innerHTML =  obtenirTotalQuestion();
+    document.getElementById("totalQuestions").innerHTML =  obtenirTotalQuestion() - 1;
+}
+
+/**
+ * @name majNoQuestionCourant
+ * @description Modifie l'interface en affichant le numéro de la question courante.
+ */
+function majNoQuestionCourant()
+{
+        document.getElementById("noQuestionCourante").innerHTML =  questionCourante;
 }
 
 /**
@@ -158,18 +150,9 @@ function majTexteQuestion(noQuestion)
 	var texteQuestion = questionsQuiz[noQuestion][0];
 	document.getElementById("texteQuestion").innerHTML = texteQuestion;
 
-//	$('#texteQuestion').removeClass('animated bounceInLeft delay-1s');
-//	$('#texteQuestion').removeClass('animated wobble delay-2s');
-//	$('#texteQuestion').addClass('animated bounceInLeft delay-1s');
-}
-
-/**
- * @name majNoQuestionCourant
- * @description Modifie l'interface en affichant le numéro de la question courante.
- */
-function majNoQuestionCourant()
-{
-    document.getElementById("noQuestionCourante").innerHTML =  questionCourante + 1;
+	$('#texteQuestion').removeClass('animated bounceInLeft delay-1s');
+	$('#texteQuestion').removeClass('animated wobble delay-2s');
+	$('#texteQuestion').addClass('animated bounceInLeft delay-1s');
 }
 
 /**
@@ -197,34 +180,15 @@ function majProgression()
  * @name majInterface
  * @description Modifie l'interface en changeant la question, les choix de réponses, en mettant à jour le pointage, la barre de progression et le numéro de la question courante et en remettant à zéro les boutons.
  */
-function majInterface()
-{
+function majInterface() {
     majPointage();
     majTotalQuestion();
-    if (isStarted) {
-         setTimeout(function () {
-            remiseAZeroBoutons();
-            majTexteChoix(questionCourante);
-            majTexteQuestion(questionCourante);
-            majNoQuestionCourant();	
-        //    majProgression();
-         }, 1800);
-    }
-    else {
-        isStarted = true;
-        majQuestion();
-    }
-    
-}
-function majQuestion()
-{
     remiseAZeroBoutons();
-    majTexteChoix(questionCourante);
-    majTexteQuestion(questionCourante);
+    majTexteChoix(questionCourante-1);
+    majTexteQuestion(questionCourante-1);
     majNoQuestionCourant();	
 //    majProgression();
 }
-
 
 /**
  * @name selectionnerChoix
@@ -233,21 +197,100 @@ function majQuestion()
  */
 function selectionnerChoix(noChoix)
 {
-    if (isStarted) {
-        if (validerQuestion(questionCourante, noChoix)){
-            document.getElementById(obtenirButtonId(noChoix)).style.backgroundColor = "green";
-            ajouterPoint();
+    if (ready) {
+        ready = false
+        if (questionCourante > 0){
+            var colour = "";
+            var timeOut = 0;
+            reponseUtilisateur = noChoix
+            if (validerQuestion(questionCourante -1,reponseUtilisateur)){
+                colour = "green";
+                ajouterPoint();    
+                timeOut = 500;
+            } 
+            else{
+                colour = "red";
+                afficherBonneReponse(questionCourante -1);
+                timeOut = 1500;
+            }
+            document.getElementById("btnChoix" + (reponseUtilisateur + 1)).style.backgroundColor = colour;
+            chargerQuestionSuivante();
+            
+            $('#modalReponse').modal();
+            
+            $('#modalReponse').;
+            setTimeout(function () {
+                if (estFinPartie(questionCourante)) {
+                     afficherBoiteFinDeJeu(); 
+                }
+                else {
+                    majInterface();
+                }
+                ready = true;
+            }, timeOut);
         }
         else{
-            afficherBonneReponse(questionCourante);
-            $('#modalReponse').modal();
+            chargerQuestionSuivante();
+            majInterface();
+            ready = true;
         }
-        if (estFinPartie()) {
-            afficherBoiteFinDeJeu();
-        }
+    }    
+//    if (isFirstPlay){
+//        isFirstPlay = false;
+//        isStarted = true;
+//        chargerQuestionSuivante();
+//        majInterface(0);
+//    }
+    
+//    
+//    if (isStarted) {
+//        reponseUtilisateur = noChoix;
+//        var bonneReponse = validerQuestion(questionCourante, reponseUtilisateur);
+//        if (bonneReponse){
+//            colour = "green";
+//            ajouterPoint();
+//        }
+//        else{
+//            colour = "red";
+//            afficherBonneReponse(questionCourante-1);
+//            $('#modalReponse').modal();
+//            timeOut = 1500;
+//        }
+//        var btnName = "btnChoix" + noChoix + 1;
+//        document.getElementById("btnChoix" + (noChoix + 1)).style.backgroundColor = colour;
+//        chargerQuestionSuivante();
+//        majInterface(timeOut);
+//    }
+//    else if (!(isFirstPlay)) {
+//        chargerQuestionSuivante();
+//        isStarted = true;
+//    }
+//    else {
+//        chargerQuestionSuivante();
+//        isStarted = true;
+//        majInterface(0);
+//        isFirstPlay = false;
+//    }
+//    
+//    if (estFinPartie(questionCourante)) {
+//            afficherBoiteFinDeJeu();
+//    }
+}
+
+/**
+ * @name validerQuestion
+ * @description Valide si la réponse choisie est la bonne.
+ * @param {*} noQuestion numéro de la question
+ * @param {*} choixUtilisateur choix fait par l'utilisateur
+ * @returns true si la réponse choisie est bonne, sinon false
+ */
+function validerQuestion(noQuestion, choixUtilisateur)
+{
+    var choixReponse= obtenirChoix(noQuestion)
+    if (choixReponse[choixUtilisateur] == obtenirBonneReponse(noQuestion)) {
+        return true;
     }
-    chargerQuestionSuivante();
-    majInterface();
+	return false;
 }
 
 /**
@@ -255,9 +298,34 @@ function selectionnerChoix(noChoix)
  * @description Modifie l'interface pour afficher la boîte de résumé et cacher la boîte de question.
  */
 function afficherBoiteFinDeJeu()
-{
-	$('#modalReponse').modal();
-        document.getElementById("texteReponse").innerHTML = "Merci d'avoir jouer, vous avez réussi " + obtenirPointage() + " questions sur " + MAX_QUESTIONS;
+{    
+       
+            document.getElementById("texteReponse").previousSibling.innerHTML = "";
+            document.getElementById("texteReponse").innerHTML = "Merci d'avoir jouer, vous avez réussi " + obtenirPointage() + " questions sur " + MAX_QUESTIONS;
+            document.getElementById("texteReponse").nextSibling.innerHTML = "";
+    	    $('#modalReponse').modal();
+
+            totalPointage = 0;
+            questionCourante = 0;
+            questionsQuiz = [];
+            
+            document.getElementById("txtChoix0").innerHTML = "Recommencez";
+            document.getElementById("txtChoix1").innerHTML = "la";
+            document.getElementById("txtChoix2").innerHTML = "partie";
+            document.getElementById("txtChoix3").innerHTML = "???";
+            document.getElementById("texteQuestion").innerHTML = "Bienvenue au jeu questionnaire La Vérité sur la Santé! <br>Préparez-vous à débuter!";
+            
+            majPointage();
+            majTotalQuestion();
+            remiseAZeroBoutons();
+    //        chargerQuestionSuivante();
+            majNoQuestionCourant();	
+    //            majProgression();
+            init();
+            setTimeout(function () {
+                document.getElementById("texteReponse").previousSibling.innerHTML = " La bonne réponse est la suivante : ";
+                document.getElementById("texteReponse").nextSibling.innerHTML = "Pour plus d'informations : <a id='lienPlusInfos' href='#' target='_blank'>#</a>";
+            }, 500)
 }
 
 /**
