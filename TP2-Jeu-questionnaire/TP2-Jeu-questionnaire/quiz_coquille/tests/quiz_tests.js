@@ -63,7 +63,7 @@ QUnit.test("WHEN_questionCouranteIsFive_THEN_estFinPartie_returnsFalse", functio
     var isItTheEnd = estFinPartie(questionCourante);
     
   //Assert
-  const EXPECTED_VALUE = true;
+  const EXPECTED_VALUE = false;
   assert.deepEqual(isItTheEnd,EXPECTED_VALUE);
   }
  );

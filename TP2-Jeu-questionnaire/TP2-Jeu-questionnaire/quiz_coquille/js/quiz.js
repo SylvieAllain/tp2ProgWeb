@@ -97,6 +97,7 @@ function afficherBonneReponse(noQuestion)
     document.getElementById("texteReponse").innerHTML = bonneReponse;
     document.getElementById("lienPlusInfos").href = questionsQuiz[noQuestion][2];
     document.getElementById("lienPlusInfos").innerHTML = questionsQuiz[noQuestion][2];
+    $('#modalReponse').modal();
 }
 
 /**
@@ -148,11 +149,11 @@ function majTexteChoix(noQuestion)
 function majTexteQuestion(noQuestion)
 {
 	var texteQuestion = questionsQuiz[noQuestion][0];
-	document.getElementById("texteQuestion").innerHTML = texteQuestion;
-
+	    
 	$('#texteQuestion').removeClass('animated bounceInLeft delay-1s');
 	$('#texteQuestion').removeClass('animated wobble delay-2s');
 	$('#texteQuestion').addClass('animated bounceInLeft delay-1s');
+        document.getElementById("texteQuestion").innerHTML = texteQuestion;
 }
 
 /**
@@ -205,8 +206,7 @@ function selectionnerChoix(noChoix)
             reponseUtilisateur = noChoix
             if (validerQuestion(questionCourante -1,reponseUtilisateur)){
                 colour = "green";
-                ajouterPoint();    
-                timeOut = 500;
+                ajouterPoint(); 
             } 
             else{
                 colour = "red";
@@ -215,19 +215,8 @@ function selectionnerChoix(noChoix)
             }
             document.getElementById("btnChoix" + (reponseUtilisateur + 1)).style.backgroundColor = colour;
             chargerQuestionSuivante();
+            quoiAfficher(timeOut);
             
-            $('#modalReponse').modal();
-            
-            $('#modalReponse').;
-            setTimeout(function () {
-                if (estFinPartie(questionCourante)) {
-                     afficherBoiteFinDeJeu(); 
-                }
-                else {
-                    majInterface();
-                }
-                ready = true;
-            }, timeOut);
         }
         else{
             chargerQuestionSuivante();
@@ -277,6 +266,19 @@ function selectionnerChoix(noChoix)
 //    }
 }
 
+function quoiAfficher(timeOut) {
+    setTimeout(function () {
+        if (estFinPartie(questionCourante)) {
+             afficherBoiteFinDeJeu(); 
+        }
+        else {
+            majInterface();
+        }
+        ready = true;
+    }, timeOut);
+}
+
+
 /**
  * @name validerQuestion
  * @description Valide si la réponse choisie est la bonne.
@@ -306,17 +308,20 @@ function afficherBoiteFinDeJeu()
     	    $('#modalReponse').modal();
 
             totalPointage = 0;
-            questionCourante = 0;
+            questionCourante = 1;
             questionsQuiz = [];
+            ready = true;
             
             document.getElementById("txtChoix0").innerHTML = "Recommencez";
             document.getElementById("txtChoix1").innerHTML = "la";
             document.getElementById("txtChoix2").innerHTML = "partie";
             document.getElementById("txtChoix3").innerHTML = "???";
-            document.getElementById("texteQuestion").innerHTML = "Bienvenue au jeu questionnaire La Vérité sur la Santé! <br>Préparez-vous à débuter!";
+            document.getElementById("texteQuestion").innerHTML = "Merci d'avoir jouer! <br>Voulez-vous recommencer!";
             
             majPointage();
             majTotalQuestion();
+            
+            questionCourante = 0;
             remiseAZeroBoutons();
     //        chargerQuestionSuivante();
             majNoQuestionCourant();	
