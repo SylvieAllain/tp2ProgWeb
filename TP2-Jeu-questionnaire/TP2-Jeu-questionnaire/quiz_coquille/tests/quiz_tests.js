@@ -344,38 +344,67 @@ QUnit.test ("WHEN_theUserClickOnTheGoodAnswer_THEN_validerReponse_returnsTrue",
     }
   );
 
-  QUnit.test ("WHEN_theUserGot3Points_THEN_obtenirPointage_returns3",
-    function (assert){
+  QUnit.test ("WHEN_userGiveTheWrongAnswer_THEN_ajouterPoint_returnsTotalPointage",
+    function(assert)
+    {
       //Arrange
-
+      var addPoint = 0;
       //Act
-      var totalPointage = obtenirPointage();
 
       //Assert
-      assert.equal (totalPointage, 3);
+      const EXPECTED_TOTAL_OF_POINTS = totalPointage;
+      assert.equal(addPoint, EXPECTED_TOTAL_OF_POINTS);
     }
   );
 
-  QUnit.test ("WHEN_theUserGot0Points_THEN_obtenirPointage_returns0",
-    function (assert){
+  QUnit.test ("WHEN_userGiveTheRightAnswer_THEN_ajouterPoint_returnsTotalPointage",
+    function(assert)
+    {
       //Arrange
-
+      var addPoint = 0;
+      addPoint++;
       //Act
-      var totalPointage = obtenirPointage();
+      ajouterPoint();
 
       //Assert
-      assert.equal (totalPointage, 0);
+      const EXPECTED_TOTAL_OF_POINTS = totalPointage;
+      assert.equal(addPoint, EXPECTED_TOTAL_OF_POINTS);
     }
-  );
+);
 
-  QUnit.test ("WHEN_theUserGot5Points_THEN_obtenirPointage_returns5",
-    function (assert){
-      //Arrange
-
-      //Act
-      var totalPointage = obtenirPointage();
-
-      //Assert
-      assert.equal (totalPointage, 5);
-    }
-  );
+  //
+  // QUnit.test ("WHEN_theUserGot3Points_THEN_obtenirPointage_returns3",
+  //   function (assert){
+  //     //Arrange
+  //
+  //     //Act
+  //     var totalPointage = obtenirPointage();
+  //
+  //     //Assert
+  //     assert.equal (totalPointage, 3);
+  //   }
+  // );
+  //
+  // QUnit.test ("WHEN_theUserGot0Points_THEN_obtenirPointage_returns0",
+  //   function (assert){
+  //     //Arrange
+  //
+  //     //Act
+  //     var totalPointage = obtenirPointage();
+  //
+  //     //Assert
+  //     assert.equal (totalPointage, 0);
+  //   }
+  // );
+  //
+  // QUnit.test ("WHEN_theUserGot5Points_THEN_obtenirPointage_returns5",
+  //   function (assert){
+  //     //Arrange
+  //
+  //     //Act
+  //     var totalPointage = obtenirPointage();
+  //
+  //     //Assert
+  //     assert.equal (totalPointage, 5);
+  //   }
+  // );
