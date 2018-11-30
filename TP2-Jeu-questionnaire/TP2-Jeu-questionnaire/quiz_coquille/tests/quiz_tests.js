@@ -230,6 +230,10 @@ QUnit.test ("WHEN_theUserClickOnTheGoodAnswer_THEN_validerReponse_returnsTrue",
   }
 );
 
+
+
+
+
   QUnit.test ("WHEN_theUserClickOnTheWrongAnswer_THEN_validerReponse_returnsFalse",
     function (assert){
       //Arrange
