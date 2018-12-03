@@ -93,7 +93,7 @@ var questionsQuiz = [];
  */
 function choisirQuestions(){
   questionsQuiz = new Array(0);
-  while (questionsQuiz.length -1 < MAX_QUESTIONS){
+  while (questionsQuiz.length  < MAX_QUESTIONS){
     var q = (Math.random(0,10))*10;
     q = Math.floor(q);
     if (questionsQuiz.indexOf(tableauQuestions[q]) < 0)

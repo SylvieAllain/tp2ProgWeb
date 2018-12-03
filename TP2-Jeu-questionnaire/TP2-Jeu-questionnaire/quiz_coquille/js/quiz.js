@@ -51,7 +51,7 @@ function chargerQuestionSuivante()
  */
 function estFinPartie(questionCourante)
 {
-    if (questionCourante > MAX_QUESTIONS){
+    if (questionCourante >= MAX_QUESTIONS){
         return true;
     }
  return false;
@@ -202,25 +202,51 @@ function selectionnerChoix(noChoix)
         ready = false
         if (questionCourante > 0){
             var colour = "";
-            var timeOut = 0;
+            timeOut = 0;
             var sound = "";
             reponseUtilisateur = noChoix
-            if (validerQuestion(questionCourante -1,reponseUtilisateur)){
+            isAnswerValid = validerQuestion(questionCourante -1,reponseUtilisateur);
+            if (isAnswerValid){
                 sound = document.getElementById("successAudio");
                 colour = "green";
+                timeOut = 500
                 ajouterPoint(); 
             } 
             else{
                 sound = document.getElementById("errorAudio");
                 colour = "red";
+                timeOut = 
                 afficherBonneReponse(questionCourante -1);
-                timeOut = 1500;
             }
-            document.getElementById("btnChoix" + (reponseUtilisateur + 1)).style.backgroundColor = colour;
-           // sound.play();
-            chargerQuestionSuivante();
-            quoiAfficher(timeOut);
+            document.getElementById("btnChoix" + (reponseUtilisateur + 1)).style.backgroundColor = colour; 
+            // sound.play();
             
+            if (estFinPartie(questionCourante)) {
+                setTimeout(function () {
+                     if (isAnswerValid) {
+                        afficherBoiteFinDeJeu();
+                    }
+                    else {
+                        $('#modalReponse').on('hide.bs.modal', function () {
+                            afficherBoiteFinDeJeu();
+                        });
+                    }
+                }, 500);
+            }
+            else {
+                chargerQuestionSuivante();
+                setTimeout(function () {
+                    if (isAnswerValid) {
+                        majInterface();
+                    }
+                    else {
+                        $('#modalReponse').on('hide.bs.modal', function () {
+                            majInterface();
+                        });
+                    }
+                    ready = true;
+                }, 500);
+            }
         }
         else{
           //  document.getElementById("introAudio").play();
@@ -229,18 +255,6 @@ function selectionnerChoix(noChoix)
             ready = true;
         }
     }  
-}
-
-function quoiAfficher(timeOut) {
-    setTimeout(function () {
-        if (estFinPartie(questionCourante)) {
-             afficherBoiteFinDeJeu(); 
-        }
-        else {
-            majInterface();
-        }
-        ready = true;
-    }, timeOut);
 }
 
 /**
@@ -289,10 +303,8 @@ function afficherBoiteFinDeJeu()
             majNoQuestionCourant();	
     //            majProgression();
             init();
-            setTimeout(function () {
-                document.getElementById("texteReponse").previousSibling.innerHTML = " La bonne réponse est la suivante : ";
-                document.getElementById("texteReponse").nextSibling.innerHTML = "Pour plus d'informations : <a id='lienPlusInfos' href='#' target='_blank'>#</a>";
-            }, 500)
+            document.getElementById("texteReponse").previousSibling.innerHTML = " La bonne réponse est la suivante : ";
+            document.getElementById("texteReponse").nextSibling.innerHTML = "Pour plus d'informations : <a id='lienPlusInfos' href='#' target='_blank'>#</a>";
 }
 
 function playIntro() {
