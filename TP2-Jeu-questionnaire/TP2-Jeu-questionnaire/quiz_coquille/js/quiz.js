@@ -201,51 +201,56 @@ function selectionnerChoix(noChoix)
     if (ready) {
         ready = false
         if (questionCourante > 0){
+            
             var colour = "";
             timeOut = 0;
             var sound = "";
-            reponseUtilisateur = noChoix
+            reponseUtilisateur = noChoix;
             isAnswerValid = validerQuestion(questionCourante -1,reponseUtilisateur);
+            
             if (isAnswerValid){
                 sound = document.getElementById("successAudio");
                 colour = "green";
-                timeOut = 500
+                timeOut = 500;
                 ajouterPoint(); 
             } 
             else{
                 sound = document.getElementById("errorAudio");
                 colour = "red";
-                timeOut = 
+                timeOut = 1500;
                 afficherBonneReponse(questionCourante -1);
             }
+            
             document.getElementById("btnChoix" + (reponseUtilisateur + 1)).style.backgroundColor = colour; 
             // sound.play();
             
             if (estFinPartie(questionCourante)) {
-                setTimeout(function () {
-                     if (isAnswerValid) {
+                
+                if (isAnswerValid) {
+                    setTimeout(function () {
                         afficherBoiteFinDeJeu();
-                    }
-                    else {
-                        $('#modalReponse').on('hide.bs.modal', function () {
-                            afficherBoiteFinDeJeu();
-                        });
-                    }
-                }, 500);
+                    }, timeOut);
+                }
+                else {
+                    $('#modalReponse').on('hide.bs.modal', function () {
+                        afficherBoiteFinDeJeu();
+                    });
+                }
             }
             else {
+                
                 chargerQuestionSuivante();
-                setTimeout(function () {
-                    if (isAnswerValid) {
+                if (isAnswerValid) {
+                    setTimeout(function () {
                         majInterface();
-                    }
-                    else {
-                        $('#modalReponse').on('hide.bs.modal', function () {
-                            majInterface();
-                        });
-                    }
-                    ready = true;
-                }, 500);
+                    }, timeOut);
+                }
+                else {
+                    $('#modalReponse').on('hide.bs.modal', function () {
+                        majInterface();
+                    });
+                }
+                ready = true;
             }
         }
         else{
@@ -284,10 +289,8 @@ function afficherBoiteFinDeJeu()
             document.getElementById("texteReponse").nextSibling.innerHTML = "";
             $('#modalReponse').modal();
             
-            totalPointage = 0;
-            questionCourante = 1;
-            questionsQuiz = [];
-            ready = true;
+            
+            
             
             document.getElementById("txtChoix0").innerHTML = "Recommencez";
             document.getElementById("txtChoix1").innerHTML = "la";
@@ -295,16 +298,24 @@ function afficherBoiteFinDeJeu()
             document.getElementById("txtChoix3").innerHTML = "???";
             document.getElementById("texteQuestion").innerHTML = "Merci d'avoir jouer! <br>Voulez-vous recommencer!";
             
-            majPointage();
-            majTotalQuestion();
-            
-            questionCourante = 0;
-            remiseAZeroBoutons();
-            majNoQuestionCourant();	
-    //            majProgression();
-            init();
-            document.getElementById("texteReponse").previousSibling.innerHTML = " La bonne réponse est la suivante : ";
-            document.getElementById("texteReponse").nextSibling.innerHTML = "Pour plus d'informations : <a id='lienPlusInfos' href='#' target='_blank'>#</a>";
+            $('#modalReponse').on('hide.bs.modal', function () {
+                questionCourante = 1;
+                majPointage();
+                majTotalQuestion();
+                
+                remiseAZeroBoutons();
+                majNoQuestionCourant();	
+        //            majProgression();
+        
+                questionCourante = 0;
+                totalPointage = 0;
+                questionsQuiz = [];
+                ready = true;
+                init();
+                document.getElementById("texteReponse").previousSibling.innerHTML = " La bonne réponse est la suivante : ";
+                document.getElementById("texteReponse").nextSibling.innerHTML = "Pour plus d'informations : <a id='lienPlusInfos' href='#' target='_blank'>#</a>";
+            });
+           
 }
 
 function playIntro() {
