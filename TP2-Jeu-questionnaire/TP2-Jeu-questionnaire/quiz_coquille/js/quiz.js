@@ -31,7 +31,7 @@ function ajouterPoint()
  */
 function obtenirTotalQuestion()
 {
-    return questionCourante;
+    return MAX_QUESTIONS;
 }
 
 /**
@@ -51,7 +51,7 @@ function chargerQuestionSuivante()
  */
 function estFinPartie(questionCourante)
 {
-    if (questionCourante >= MAX_QUESTIONS){
+    if (questionCourante == obtenirTotalQuestion()){
         return true;
     }
  return false;
@@ -82,8 +82,7 @@ function obtenirChoix(noQuestion)
  */
 function obtenirBonneReponse(noQuestion)
 {
-        var choixDeReponse = obtenirChoix(noQuestion);
-       return choixDeReponse[questionsQuiz[noQuestion][POS_REPONSE]];
+       return questionsQuiz[noQuestion][POS_REPONSE];
 }
 
 /**
@@ -93,11 +92,12 @@ function obtenirBonneReponse(noQuestion)
  */
 function afficherBonneReponse(noQuestion)
 {
+    var choix = obtenirChoix(noQuestion);
     var bonneReponse = obtenirBonneReponse(noQuestion);
-    document.getElementById("texteReponse").innerHTML = bonneReponse;
+
+    document.getElementById("texteReponse").innerHTML = choix[bonneReponse];
     document.getElementById("lienPlusInfos").href = questionsQuiz[noQuestion][2];
     document.getElementById("lienPlusInfos").innerHTML = questionsQuiz[noQuestion][2];
-    $('#modalReponse').modal();
 }
 
 /**
@@ -149,11 +149,11 @@ function majTexteChoix(noQuestion)
 function majTexteQuestion(noQuestion)
 {
 	var texteQuestion = questionsQuiz[noQuestion][0];
-        document.getElementById("texteQuestion").innerHTML = texteQuestion;
-	    
-	$('#texteQuestion').removeClass('animated bounceInLeft delay-1s');
-	$('#texteQuestion').removeClass('animated wobble delay-2s');
-	$('#texteQuestion').addClass('animated bounceInLeft delay-1s');
+    
+    document.getElementById("texteQuestion").innerHTML = texteQuestion;
+    $('#texteQuestion').removeClass('animated bounceInLeft delay-1s');
+    $('#texteQuestion').removeClass('animated wobble delay-2s');
+    $('#texteQuestion').addClass('animated bounceInLeft delay-1s');
 }
 
 /**
@@ -161,11 +161,9 @@ function majTexteQuestion(noQuestion)
  * @description Modifie l'interface en remettant à l'état initial les boutons de réponse.
  */
 function remiseAZeroBoutons()
-{ 
-        document.getElementById("btnChoix1").style.backgroundColor = "white";
-        document.getElementById("btnChoix2").style.backgroundColor = "white";
-        document.getElementById("btnChoix3").style.backgroundColor = "white";
-        document.getElementById("btnChoix4").style.backgroundColor = "white";
+{
+        document.getElementById("btnChoix" + (reponseUtilisateur + 1)).removeAttribute("class");
+        document.getElementById("btnChoix" + (reponseUtilisateur + 1)).setAttribute("class","col-sm text-center btnChoix shadow-sm");
 }
 
 /**
@@ -182,11 +180,11 @@ function majProgression()
  * @description Modifie l'interface en changeant la question, les choix de réponses, en mettant à jour le pointage, la barre de progression et le numéro de la question courante et en remettant à zéro les boutons.
  */
 function majInterface() {
-    majTexteQuestion(questionCourante-1);
+    majTexteQuestion(questionCourante);
     majPointage();
     majTotalQuestion();
     remiseAZeroBoutons();
-    majTexteChoix(questionCourante-1);
+    majTexteChoix(questionCourante);
     majNoQuestionCourant();	
 //    majProgression();
 }
@@ -198,17 +196,42 @@ function majInterface() {
  */
 function selectionnerChoix(noChoix)
 {
+    reponseUtilisateur = noChoix;
+    var btnChoix = document.getElementById("btnChoix" + (reponseUtilisateur + 1));
+
     if (ready) {
-        ready = false
+        ready = false;
+        if (estFinPartie(questionCourante)){
+            afficherBoiteFinDeJeu();
+        }
+        else{
+            if(validerQuestion(questionCourante,reponseUtilisateur)){
+                //jouerSon("successAudio");
+                btnChoix.setAttribute("class","col-sm text-center btnChoix shadow-sm alert alert-success");
+                ajouterPoint();
+            }
+            else{
+                //jouerSon("errorAudio");
+            }
+            chargerQuestionSuivante();
+            majTexteQuestion();
+        }
+        ready = true;
+    }
+    
+
+/*
+    if (ready) {
+        ready = false;
         if (questionCourante > 0){
             
             var colour = "";
             timeOut = 0;
             var sound = "";
-            reponseUtilisateur = noChoix;
             isAnswerValid = validerQuestion(questionCourante -1,reponseUtilisateur);
             
             if (isAnswerValid){
+                btnChoix.addClass("alert-success");
                 sound = document.getElementById("successAudio");
                 colour = "green";
                 timeOut = 500;
@@ -219,9 +242,11 @@ function selectionnerChoix(noChoix)
                 colour = "red";
                 timeOut = 1500;
                 afficherBonneReponse(questionCourante -1);
+
+                $('#modalReponse').modal();
             }
             
-            document.getElementById("btnChoix" + (reponseUtilisateur + 1)).style.backgroundColor = colour; 
+            btnChoix.style.backgroundColor = colour; 
             // sound.play();
             
             if (estFinPartie(questionCourante)) {
@@ -259,7 +284,7 @@ function selectionnerChoix(noChoix)
             majInterface();
             ready = true;
         }
-    }  
+    }  */
 }
 
 /**
@@ -271,8 +296,7 @@ function selectionnerChoix(noChoix)
  */
 function validerQuestion(noQuestion, choixUtilisateur)
 {
-    var choixReponse= obtenirChoix(noQuestion)
-    if (choixReponse[choixUtilisateur] == obtenirBonneReponse(noQuestion)) {
+    if (obtenirBonneReponse(noQuestion) == choixUtilisateur) {
         return true;
     }
 	return false;
@@ -317,7 +341,3 @@ function afficherBoiteFinDeJeu()
             });
            
 }
-
-function playIntro() {
-    //document.getElementById("introAudio").play();
-} 

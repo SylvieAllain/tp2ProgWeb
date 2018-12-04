@@ -5,7 +5,6 @@
  * @copyright 2018
  */
 
-
 //QUnit.test("WHEN__THEN__returns", function(assert){
 //  //Arrange
 //  //Act
@@ -16,6 +15,38 @@
 //  }
 // );
 
+//choisirQuestions
+QUnit.test("WHEN_isRun_THEN_choisirQuestions_returnsArrayOfLengthFive", function(assert){
+  //Arrange
+  //Act
+    choisirQuestions();
+
+  //Assert
+  const EXPECTED_VALUE = MAX_QUESTIONS;
+  assert.ok(questionsQuiz.length == EXPECTED_VALUE,"¯\_(ツ)_/¯");
+});
+
+QUnit.test("WHEN_isRun_THEN_choisirQuestions_returnsArrayOfDifferentNumbers", function(assert){
+  //Arrange
+  //Act
+    choisirQuestions();
+    var anyRepeated = false;
+    for (let i = 0; i < questionsQuiz.length; i++) {
+      for (let j = i + 1; j < questionsQuiz.length; j++) {
+        if(questionsQuiz[i]==questionsQuiz[j]){
+          anyRepeated = true;
+        }
+      }
+    }
+  //Assert
+  
+  const EXPECTED_VALUE = MAX_QUESTIONS;
+  assert.ok(!(anyRepeated),"¯\_(ツ)_/¯");
+});
+
+
+
+//estFinPartie
 QUnit.test("WHEN_questionCouranteIsZero_THEN_estFinPartie_returnsFalse", function(assert){
   //Arrange
     questionCourante = 0;
@@ -42,35 +73,9 @@ QUnit.test("WHEN_questionCouranteIsNotFive_THEN_estFinPartie_returnsFalse", func
   }
  );
 
-QUnit.test("WHEN_questionCouranteIsUnderZero_THEN_estFinPartie_returnsFalse", function(assert){
-  //Arrange
-    questionCourante = -1;
-    
-  //Act
-    var isItTheEnd = estFinPartie(questionCourante);
-    
-  //Assert
-  const EXPECTED_VALUE = false;
-  assert.deepEqual(isItTheEnd,EXPECTED_VALUE);
-  }
- );
-
 QUnit.test("WHEN_questionCouranteIsFive_THEN_estFinPartie_returnsFalse", function(assert){
   //Arrange
     questionCourante = 5;
-    
-  //Act
-    var isItTheEnd = estFinPartie(questionCourante);
-    
-  //Assert
-  const EXPECTED_VALUE = false;
-  assert.deepEqual(isItTheEnd,EXPECTED_VALUE);
-  }
- );
-
-QUnit.test("WHEN_questionCouranteIsOverFive_THEN_estFinPartie_returnsTrue", function(assert){
-  //Arrange
-    questionCourante = 6;
     
   //Act
     var isItTheEnd = estFinPartie(questionCourante);
@@ -81,6 +86,7 @@ QUnit.test("WHEN_questionCouranteIsOverFive_THEN_estFinPartie_returnsTrue", func
   }
  );
 
+ //obtenirChoix
  QUnit.test("WHEN_questionIsFirstQuestion_THEN_obtenirChoix_returnsAllFirstQuestionChoices", function(assert){
   //Arrange
   var noQuestion = 0;
@@ -146,16 +152,16 @@ QUnit.test("WHEN_questionCouranteIsOverFive_THEN_estFinPartie_returnsTrue", func
   }
  );
 
+ //obtenirBonneReponse
 QUnit.test ("WHEN_questionIsFirstQuestion_THEN_obtenirBonneReponse_returnsGoodAnswer", function (assert){
   //Arrange
   var noQuestion = 0;
-  var posReponse = questionsQuiz[noQuestion][POS_REPONSE];
   
   //Act
   var bonneReponse = obtenirBonneReponse(noQuestion);
   
   //Assert
-  const EXPECTED_ANSWER = questionsQuiz[noQuestion][posReponse + 3];
+  const EXPECTED_ANSWER = questionsQuiz[noQuestion][POS_REPONSE];
   assert.deepEqual (bonneReponse, EXPECTED_ANSWER);
   }
 );
@@ -163,13 +169,12 @@ QUnit.test ("WHEN_questionIsFirstQuestion_THEN_obtenirBonneReponse_returnsGoodAn
 QUnit.test ("WHEN_questionIsSecondQuestion_THEN_obtenirBonneReponse_returnsGoodAnswer", function (assert){
   //Arrange
   var noQuestion = 1;
-  var posReponse = questionsQuiz[noQuestion][POS_REPONSE];
   
   //Act
   var bonneReponse = obtenirBonneReponse(noQuestion);
   
   //Assert
-  const EXPECTED_ANSWER = questionsQuiz[noQuestion][posReponse + 3];
+  const EXPECTED_ANSWER = questionsQuiz[noQuestion][POS_REPONSE];
   assert.deepEqual (bonneReponse, EXPECTED_ANSWER);
   }
 );
@@ -177,13 +182,12 @@ QUnit.test ("WHEN_questionIsSecondQuestion_THEN_obtenirBonneReponse_returnsGoodA
 QUnit.test ("WHEN_questionIsThirdQuestion_THEN_obtenirBonneReponse_returnsGoodAnswer", function (assert){
   //Arrange
   var noQuestion = 2;
-  var posReponse = questionsQuiz[noQuestion][POS_REPONSE];
   
   //Act
   var bonneReponse = obtenirBonneReponse(noQuestion);
   
   //Assert
-  const EXPECTED_ANSWER = questionsQuiz[noQuestion][posReponse + 3];
+  const EXPECTED_ANSWER = questionsQuiz[noQuestion][POS_REPONSE];
   assert.deepEqual (bonneReponse, EXPECTED_ANSWER);
   }
 );
@@ -191,13 +195,12 @@ QUnit.test ("WHEN_questionIsThirdQuestion_THEN_obtenirBonneReponse_returnsGoodAn
 QUnit.test ("WHEN_questionIsFourthQuestion_THEN_obtenirBonneReponse_returnsGoodAnswer", function (assert){
   //Arrange
   var noQuestion = 3;
-  var posReponse = questionsQuiz[noQuestion][POS_REPONSE];
   
   //Act
   var bonneReponse = obtenirBonneReponse(noQuestion);
   
   //Assert
-  const EXPECTED_ANSWER = questionsQuiz[noQuestion][posReponse + 3];
+  const EXPECTED_ANSWER = questionsQuiz[noQuestion][POS_REPONSE];
   assert.deepEqual (bonneReponse, EXPECTED_ANSWER);
   }
 );
@@ -205,17 +208,17 @@ QUnit.test ("WHEN_questionIsFourthQuestion_THEN_obtenirBonneReponse_returnsGoodA
 QUnit.test ("WHEN_questionIsFifthQuestion_THEN_obtenirBonneReponse_returnsGoodAnswer", function (assert){
   //Arrange
   var noQuestion = 4;
-  var posReponse = questionsQuiz[noQuestion][POS_REPONSE];
   
   //Act
   var bonneReponse = obtenirBonneReponse(noQuestion);
   
   //Assert
-  const EXPECTED_ANSWER = questionsQuiz[noQuestion][posReponse + 3];
+  const EXPECTED_ANSWER = questionsQuiz[noQuestion][POS_REPONSE];
   assert.deepEqual (bonneReponse, EXPECTED_ANSWER);
   }
 );
 
+//validerReponse
 QUnit.test ("WHEN_theUserClickOnTheGoodAnswer_THEN_validerReponse_returnsTrue",
   function (assert){
     //Arrange

@@ -93,7 +93,7 @@ var questionsQuiz = [];
  */
 function choisirQuestions(){
   questionsQuiz = new Array(0);
-  while (questionsQuiz.length  < MAX_QUESTIONS){
+  while (questionsQuiz.length  < obtenirTotalQuestion()){
     var q = (Math.random(0,10))*10;
     q = Math.floor(q);
     if (questionsQuiz.indexOf(tableauQuestions[q]) < 0)
@@ -110,4 +110,7 @@ function init()
   choisirQuestions();
 }
 
-window.onload = init();
+window.onload = function() {
+  //document.getElementById("introAudio").play();
+  init();
+}
