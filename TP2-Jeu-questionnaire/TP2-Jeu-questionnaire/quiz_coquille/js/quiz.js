@@ -124,7 +124,7 @@ function majTotalQuestion()
  */
 function majNoQuestionCourant()
 {
-        document.getElementById("noQuestionCourante").innerHTML =  questionCourante;
+        document.getElementById("noQuestionCourante").innerHTML =  questionCourante + 1;
 }
 
 /**
@@ -202,25 +202,26 @@ function selectionnerChoix(noChoix)
     if (ready) {
         ready = false;
         if (estFinPartie(questionCourante)){
-            //afficherBoiteFinDeJeu();
+            afficherBoiteFinDeJeu();
         }
         else{
             if(validerQuestion(questionCourante,reponseUtilisateur)){
                 //jouerSon("successAudio");
                 btnChoix.setAttribute("class","col-sm text-center btnChoix shadow-sm alert alert-success");
                 ajouterPoint();
+                chargerQuestionSuivante();
+                majInterface();
             }
             else{
                 //jouerSon("errorAudio");
                 afficherBonneReponse(questionCourante);
                 $('#modalReponse').modal();
+                chargerQuestionSuivante();
             }
-            chargerQuestionSuivante();
-            majInterface();
         }
         ready = true;
-    }
-    
+    }   
+}
 
 /*
     if (ready) {
@@ -287,7 +288,7 @@ function selectionnerChoix(noChoix)
             ready = true;
         }
     }  */
-}
+
 
 /**
  * @name validerQuestion

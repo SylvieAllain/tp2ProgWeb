@@ -131,7 +131,7 @@
 			document.getElementById("txtChoix1").innerHTML = "la";
 			document.getElementById("txtChoix2").innerHTML = "partie";
 			document.getElementById("txtChoix3").innerHTML = "???";
-
+			
 			document.getElementById("btnChoix1").addEventListener("click", function () {
 					selectionnerChoix(0);
 			});
@@ -143,11 +143,22 @@
 			});
 			document.getElementById("btnChoix4").addEventListener("click", function () {
 					selectionnerChoix(3);
-					
 			});
+
 			setTimeout(() => {
 				majInterface();
-			}, 1500);
+			}, 2000);
+
+			
+			$('#modalReponse').on('hide.bs.modal', function () {
+				if (estFinPartie(questionCourante)){
+            		afficherBoiteFinDeJeu();
+				}
+				else{
+					chargerQuestionSuivante();
+					majInterface();
+				}
+			});
 		</script>
 
 		<!-- Audio CC0 - https://www.zapsplat.com/ -->
@@ -163,6 +174,5 @@
 			<source src="audio/intro.mp3" type="audio/mpeg" />
 			Votre navigateur ne supporte pas les éléments audio.
 		</audio>
-
 	</body>
 </html>
