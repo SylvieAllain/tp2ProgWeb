@@ -163,7 +163,7 @@ function majTexteQuestion(noQuestion)
 function remiseAZeroBoutons()
 {
         document.getElementById("btnChoix" + (reponseUtilisateur + 1)).removeAttribute("class");
-        document.getElementById("btnChoix" + (reponseUtilisateur + 1)).setAttribute("class","col-sm text-center btnChoix shadow-sm");
+        document.getElementById("btnChoix" + (reponseUtilisateur + 1)).setAttribute("class","col-sm text-center btnChoix shadow-sm alert");
 }
 
 /**
@@ -202,7 +202,7 @@ function selectionnerChoix(noChoix)
     if (ready) {
         ready = false;
         if (estFinPartie(questionCourante)){
-            afficherBoiteFinDeJeu();
+            //afficherBoiteFinDeJeu();
         }
         else{
             if(validerQuestion(questionCourante,reponseUtilisateur)){
@@ -212,9 +212,11 @@ function selectionnerChoix(noChoix)
             }
             else{
                 //jouerSon("errorAudio");
+                afficherBonneReponse(questionCourante);
+                $('#modalReponse').modal();
             }
             chargerQuestionSuivante();
-            majTexteQuestion();
+            majInterface();
         }
         ready = true;
     }

@@ -75,16 +75,16 @@
 
 								<div class="container">
 									<div class="row" id="boiteChoix">
-											<div class="col-sm text-center btnChoix shadow-sm" id="btnChoix1">
+											<div class="col-sm text-center btnChoix shadow-sm alert" id="btnChoix1">
 													<div id="txtChoix0"></div>
 											</div>
-											<div class="col-sm text-center btnChoix shadow-sm" id="btnChoix2">
+											<div class="col-sm text-center btnChoix shadow-sm alert" id="btnChoix2">
 													<div id="txtChoix1"></div>
 											</div>
-											<div class="col-sm text-center btnChoix shadow-sm" id="btnChoix3">
+											<div class="col-sm text-center btnChoix shadow-sm alert" id="btnChoix3">
 													<div id="txtChoix2"></div>
 											</div>
-											<div class="col-sm text-center btnChoix shadow-sm" id="btnChoix4">
+											<div class="col-sm text-center btnChoix shadow-sm alert" id="btnChoix4">
 													<div id="txtChoix3"></div>
 											</div>
 									</div>
@@ -143,7 +143,11 @@
 			});
 			document.getElementById("btnChoix4").addEventListener("click", function () {
 					selectionnerChoix(3);
+					
 			});
+			setTimeout(() => {
+				majInterface();
+			}, 1500);
 		</script>
 
 		<!-- Audio CC0 - https://www.zapsplat.com/ -->
