@@ -201,7 +201,9 @@ function selectionnerChoix(noChoix)
 
     if (ready) {
         ready = false;
-        if (estFinPartie(questionCourante)){
+        if (estFinPartie(questionCourante + 1) && validerQuestion(questionCourante,reponseUtilisateur)){
+            ajouterPoint();
+            majPointage();
             afficherBoiteFinDeJeu();
         }
         else{
@@ -221,6 +223,9 @@ function selectionnerChoix(noChoix)
         }
         ready = true;
     }   
+    else{
+        majInterface();
+    }
 }
 
 /*
@@ -310,37 +315,49 @@ function validerQuestion(noQuestion, choixUtilisateur)
  * @description Modifie l'interface pour afficher la boîte de résumé et cacher la boîte de question.
  */
 function afficherBoiteFinDeJeu()
-{    
-            document.getElementById("texteReponse").previousSibling.innerHTML = "";
-            document.getElementById("texteReponse").innerHTML = "Merci d'avoir jouer, vous avez réussi " + obtenirPointage() + " questions sur " + MAX_QUESTIONS;
-            document.getElementById("texteReponse").nextSibling.innerHTML = "";
-            $('#modalReponse').modal();
-            
-            
-            
-            
-            document.getElementById("txtChoix0").innerHTML = "Recommencez";
-            document.getElementById("txtChoix1").innerHTML = "la";
-            document.getElementById("txtChoix2").innerHTML = "partie";
-            document.getElementById("txtChoix3").innerHTML = "???";
-            document.getElementById("texteQuestion").innerHTML = "Merci d'avoir jouer! <br>Voulez-vous recommencer!";
-            
-            $('#modalReponse').on('hide.bs.modal', function () {
-                questionCourante = 1;
-                majPointage();
-                majTotalQuestion();
-                
-                remiseAZeroBoutons();
-                majNoQuestionCourant();	
-        //            majProgression();
-        
-                questionCourante = 0;
-                totalPointage = 0;
-                questionsQuiz = [];
-                ready = true;
-                init();
-                document.getElementById("texteReponse").previousSibling.innerHTML = " La bonne réponse est la suivante : ";
-                document.getElementById("texteReponse").nextSibling.innerHTML = "Pour plus d'informations : <a id='lienPlusInfos' href='#' target='_blank'>#</a>";
-            });
-           
+{          
+    var btnChoix = document.getElementsByClassName("btnChoix");
+    var restartButton = document.createElement("button");
+    restartButton.setAttribute("class","btn btn-secondary btn-block");
+    restartButton.setAttribute("id","restartGameBtn");
+    restartButton.setAttribute("onclick","restartGame()");
+    restartButton.innerHTML = "Recommencer";
+    
+    for (let i = 0; i < btnChoix.length; i++) {
+        btnChoix[i].setAttribute("hidden","true");
+    }
+    
+    btnChoix[0].parentNode.append(restartButton);
+    document.getElementById("texteQuestion").innerHTML = "Merci d'avoir jouer! <br>Voulez-vous recommencer!";   
+}
+
+
+/**
+ * @name afficherBoiteFinDeJeu
+ * @description Modifie l'interface pour afficher la boîte de résumé et cacher la boîte de question.
+ */
+
+function restartGame(){
+    var btnChoix = document.getElementsByClassName("btnChoix");
+
+    document.getElementById("restartGameBtn").remove();
+    for (let i = 0; i < btnChoix.length; i++) {
+        btnChoix[i].removeAttribute("hidden");
+    }
+
+    questionCourante = 0;
+    totalPointage = 0;
+    questionsQuiz = [];
+
+    init();    
+    ready = true; 
+    majInterface();
+}
+
+function timer(){
+    var d = new Date();
+    document.getElementById("txtChoix3").innerHTML = now - d.toLocaleTimeString();
+}
+function myStopFunction() {
+    clearInterval(firstLoadTimer);
 }

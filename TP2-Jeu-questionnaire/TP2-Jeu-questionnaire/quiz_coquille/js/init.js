@@ -54,7 +54,7 @@ var reponseUtilisateur = 0;
   * @global
   * @name ready
   * @type {boolean}
-  * @description pres pour un autre click.
+  * @description Prêt pour un autre click.
   */
 var ready = true;
 

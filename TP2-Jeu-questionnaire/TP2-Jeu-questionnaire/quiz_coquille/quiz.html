@@ -131,31 +131,35 @@
 			document.getElementById("txtChoix1").innerHTML = "la";
 			document.getElementById("txtChoix2").innerHTML = "partie";
 			document.getElementById("txtChoix3").innerHTML = "???";
-			
-			document.getElementById("btnChoix1").addEventListener("click", function () {
-					selectionnerChoix(0);
-			});
-			document.getElementById("btnChoix2").addEventListener("click",function () {
-					selectionnerChoix(1);
-			});
-			document.getElementById("btnChoix3").addEventListener("click", function () {
-					selectionnerChoix(2);
-			});
-			document.getElementById("btnChoix4").addEventListener("click", function () {
-					selectionnerChoix(3);
-			});
 
-			setTimeout(() => {
+			var firstLoadTimer;
+    		var now = d.now;
+			setTimeout(function() {
 				majInterface();
-			}, 2000);
+				document.getElementById("btnChoix1").addEventListener("click", function() {
+					selectionnerChoix(0);
+				});
+				document.getElementById("btnChoix2").addEventListener("click", function() {
+					selectionnerChoix(1);
+				});
+				document.getElementById("btnChoix3").addEventListener("click", function() {
+					selectionnerChoix(2);
+				});	
+				document.getElementById("btnChoix4").addEventListener("click", function() {
+					selectionnerChoix(3);
+				});
+			}, 3000);
+			firstLoadTimer = setInterval(function(){timer();},1000);
 
 			
+			
+			
+
 			$('#modalReponse').on('hide.bs.modal', function () {
 				if (estFinPartie(questionCourante)){
             		afficherBoiteFinDeJeu();
 				}
 				else{
-					chargerQuestionSuivante();
 					majInterface();
 				}
 			});
