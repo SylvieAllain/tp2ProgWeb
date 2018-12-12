@@ -109,4 +109,7 @@ function init(){
   choisirQuestions();
 }
 
-window.onload = init();
+window.onload = function (){
+  init();
+  document.getElementById("introAudio").play();
+}

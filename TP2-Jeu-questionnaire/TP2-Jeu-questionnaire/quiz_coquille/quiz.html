@@ -133,15 +133,14 @@
 			document.getElementById("txtChoix2").innerHTML = "partie";
 			document.getElementById("txtChoix3").innerHTML = "3";
 			
-			var now = Date.now();
+			var now = Math.floor(Date.now()/1000);
 			var firstLoadTimer = setInterval(function() {
-				var millis = (now - Date.now()+ 4000);
-				document.getElementById("txtChoix3").innerHTML = Math.floor(millis/1000) ;
+				var millis = (now - Math.floor(Date.now()/1000) + 3);
+				document.getElementById("txtChoix3").innerHTML = millis;
 			}, 1000);			
 
 			setTimeout(function() {
 				stopInterval();
-				document.getElementById("introAudio").play();
 				document.getElementById("btnChoix1").addEventListener("click", function() {
 					selectionnerChoix(0);
 				});
