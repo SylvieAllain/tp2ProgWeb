@@ -287,7 +287,7 @@ function restartGame(){
     totalPointage = 0;
     questionsQuiz = [];
 
-    init();    
+    init();
     ready = true; 
     majInterface();
 }
