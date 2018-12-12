@@ -149,7 +149,7 @@ function majTexteChoix(noQuestion)
 function majTexteQuestion(noQuestion)
 {
 	var texteQuestion = questionsQuiz[noQuestion][0];
-    
+
     document.getElementById("texteQuestion").innerHTML = texteQuestion;
     $('#texteQuestion').removeClass('animated bounceInLeft delay-1s');
     $('#texteQuestion').removeClass('animated wobble delay-2s');
@@ -171,7 +171,7 @@ function remiseAZeroBoutons()
  * @description Modifie l'interface en ajustant la barre de progression.
  */
 function majProgression()
-{   
+{
     var barreProgression = document.getElementById("barreProgression");
     barreProgression.setAttribute("class","col-" + (questionCourante * 3));
 }
@@ -186,7 +186,7 @@ function majInterface() {
     majTotalQuestion();
     remiseAZeroBoutons();
     majTexteChoix(questionCourante);
-    majNoQuestionCourant();	
+    majNoQuestionCourant();
     majProgression();
 }
 
@@ -223,7 +223,7 @@ function selectionnerChoix(noChoix)
             }
         }
         ready = true;
-    }   
+    }
     else{
         majInterface();
     }
@@ -252,21 +252,21 @@ function validerQuestion(noQuestion, choixUtilisateur)
  * @description Modifie l'interface pour afficher la boîte de résumé et cacher la boîte de question.
  */
 function afficherBoiteFinDeJeu()
-{          
+{
     var btnChoix = document.getElementsByClassName("btnChoix");
     var restartButton = document.createElement("button");
     restartButton.setAttribute("class","btn btn-secondary btn-block");
     restartButton.setAttribute("id","restartGameBtn");
     restartButton.setAttribute("onclick","restartGame()");
     restartButton.innerHTML = "Recommencer";
-    
+
     for (let i = 0; i < btnChoix.length; i++) {
         btnChoix[i].setAttribute("hidden","true");
     }
-    
+
     btnChoix[0].parentNode.append(restartButton);
 
-    document.getElementById("texteQuestion").innerHTML = "Merci d'avoir jouer! <br>Voulez-vous recommencer!";   
+    document.getElementById("texteQuestion").innerHTML = "Merci d'avoir jouer! <br>Voulez-vous recommencer!";
 }
 
 /**
@@ -287,8 +287,8 @@ function restartGame(){
     totalPointage = 0;
     questionsQuiz = [];
 
-    init();    
-    ready = true; 
+    init();
+    ready = true;
     majInterface();
 }
 
