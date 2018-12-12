@@ -171,8 +171,9 @@ function remiseAZeroBoutons()
  * @description Modifie l'interface en ajustant la barre de progression.
  */
 function majProgression()
-{
-	//ajouter votre code ici
+{   
+    var barreProgression = document.getElementById("barreProgression");
+    barreProgression.setAttribute("class","col-" + (questionCourante * 3));
 }
 
 /**
@@ -186,7 +187,7 @@ function majInterface() {
     remiseAZeroBoutons();
     majTexteChoix(questionCourante);
     majNoQuestionCourant();	
-//    majProgression();
+    majProgression();
 }
 
 /**
@@ -208,14 +209,14 @@ function selectionnerChoix(noChoix)
         }
         else{
             if(validerQuestion(questionCourante,reponseUtilisateur)){
-                //jouerSon("successAudio");
+                jouerSon("successAudio");
                 btnChoix.setAttribute("class","col-sm text-center btnChoix shadow-sm alert alert-success");
                 ajouterPoint();
                 chargerQuestionSuivante();
                 majInterface();
             }
             else{
-                //jouerSon("errorAudio");
+                jouerSon("errorAudio");
                 afficherBonneReponse(questionCourante);
                 $('#modalReponse').modal();
                 chargerQuestionSuivante();
@@ -226,73 +227,9 @@ function selectionnerChoix(noChoix)
     else{
         majInterface();
     }
+
+    document.getElementById("barreProgression").setAttribute('style','background-color: green;');
 }
-
-/*
-    if (ready) {
-        ready = false;
-        if (questionCourante > 0){
-            
-            var colour = "";
-            timeOut = 0;
-            var sound = "";
-            isAnswerValid = validerQuestion(questionCourante -1,reponseUtilisateur);
-            
-            if (isAnswerValid){
-                btnChoix.addClass("alert-success");
-                sound = document.getElementById("successAudio");
-                colour = "green";
-                timeOut = 500;
-                ajouterPoint(); 
-            } 
-            else{
-                sound = document.getElementById("errorAudio");
-                colour = "red";
-                timeOut = 1500;
-                afficherBonneReponse(questionCourante -1);
-
-                $('#modalReponse').modal();
-            }
-            
-            btnChoix.style.backgroundColor = colour; 
-            // sound.play();
-            
-            if (estFinPartie(questionCourante)) {
-                
-                if (isAnswerValid) {
-                    setTimeout(function () {
-                        afficherBoiteFinDeJeu();
-                    }, timeOut);
-                }
-                else {
-                    $('#modalReponse').on('hide.bs.modal', function () {
-                        afficherBoiteFinDeJeu();
-                    });
-                }
-            }
-            else {
-                
-                chargerQuestionSuivante();
-                if (isAnswerValid) {
-                    setTimeout(function () {
-                        majInterface();
-                    }, timeOut);
-                }
-                else {
-                    $('#modalReponse').on('hide.bs.modal', function () {
-                        majInterface();
-                    });
-                }
-                ready = true;
-            }
-        }
-        else{
-          //  document.getElementById("introAudio").play();
-            chargerQuestionSuivante();
-            majInterface();
-            ready = true;
-        }
-    }  */
 
 
 /**
@@ -328,9 +265,9 @@ function afficherBoiteFinDeJeu()
     }
     
     btnChoix[0].parentNode.append(restartButton);
+
     document.getElementById("texteQuestion").innerHTML = "Merci d'avoir jouer! <br>Voulez-vous recommencer!";   
 }
-
 
 /**
  * @name afficherBoiteFinDeJeu
@@ -339,6 +276,7 @@ function afficherBoiteFinDeJeu()
 
 function restartGame(){
     var btnChoix = document.getElementsByClassName("btnChoix");
+	document.getElementById("barreProgression").setAttribute('style','background-color: #f7f7f7;');
 
     document.getElementById("restartGameBtn").remove();
     for (let i = 0; i < btnChoix.length; i++) {
@@ -354,10 +292,11 @@ function restartGame(){
     majInterface();
 }
 
-function timer(){
-    var d = new Date();
-    document.getElementById("txtChoix3").innerHTML = now - d.toLocaleTimeString();
-}
-function myStopFunction() {
+/**
+ * @name stopInterval
+ * @description Arrète l'intervalle faisant afficher le compte à rebours en début de jeu.
+ */
+
+function stopInterval() {
     clearInterval(firstLoadTimer);
 }

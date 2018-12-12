@@ -127,15 +127,21 @@
 		</div>
 
 		<script>
+			document.getElementById("barreProgression").setAttribute('style','background-color: #f7f7f7;');
 			document.getElementById("txtChoix0").innerHTML = "Commencez";
 			document.getElementById("txtChoix1").innerHTML = "la";
 			document.getElementById("txtChoix2").innerHTML = "partie";
-			document.getElementById("txtChoix3").innerHTML = "???";
+			document.getElementById("txtChoix3").innerHTML = "3";
+			
+			var now = Date.now();
+			var firstLoadTimer = setInterval(function() {
+				var millis = (now - Date.now()+ 4000);
+				document.getElementById("txtChoix3").innerHTML = Math.floor(millis/1000) ;
+			}, 1000);			
 
-			var firstLoadTimer;
-    		var now = d.now;
 			setTimeout(function() {
-				majInterface();
+				stopInterval();
+				document.getElementById("introAudio").play();
 				document.getElementById("btnChoix1").addEventListener("click", function() {
 					selectionnerChoix(0);
 				});
@@ -148,13 +154,9 @@
 				document.getElementById("btnChoix4").addEventListener("click", function() {
 					selectionnerChoix(3);
 				});
+				majInterface();
 			}, 3000);
-			firstLoadTimer = setInterval(function(){timer();},1000);
-
 			
-			
-			
-
 			$('#modalReponse').on('hide.bs.modal', function () {
 				if (estFinPartie(questionCourante)){
             		afficherBoiteFinDeJeu();
