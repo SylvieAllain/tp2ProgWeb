@@ -105,11 +105,8 @@ function choisirQuestions(){
  * @name init
  * @description Fonction d'initialisation du quiz.
  */
-function init()
-{
+function init(){
   choisirQuestions();
 }
 
-window.onload = function() {
-  init();
-}
+window.onload = init();
