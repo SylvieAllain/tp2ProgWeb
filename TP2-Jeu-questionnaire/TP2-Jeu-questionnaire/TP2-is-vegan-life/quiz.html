@@ -140,6 +140,7 @@
 			}, 1000);			
 
 			setTimeout(function() {
+				document.getElementById("introAudio").play();
 				stopInterval();
 				document.getElementById("btnChoix1").addEventListener("click", function() {
 					selectionnerChoix(0);

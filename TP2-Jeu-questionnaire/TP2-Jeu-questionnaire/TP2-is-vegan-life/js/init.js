@@ -111,5 +111,5 @@ function init(){
 
 window.onload = function (){
   init();
-  document.getElementById("introAudio").play();
+  
 }
